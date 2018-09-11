@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Orientadores</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+	
+
+	<style type="text/css">
+		
+		.separator{
+			height: 40px;
+			border-left: 2px solid;
+			margin-right: 20px;
+			border-color: white; 
+
+		}
+	</style>
+</head>
+<body style="background-color: black;">
+
+	<div class="container" style="background-color: white;">
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="navbar-brand">Coordenador</div>
+			<div class="separator"></div>
+
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="navbar-collapse collapse" id="navbarMenu">
+				
+				<div class="navbar-nav">
+					
+
+						<a href="index.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Diretrizes</button></a>
+
+						<a href="orientadores.html"><button class="btn btn-primary nav-item nav-link active" style="margin-right: 20px; color: white;">Orientadores</button></a>
+
+						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Cronograma</button>
+						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Sair</button>
+					
+				</div>
+
+			</div>
+		</nav>
+
+		<hr>
+
+		<h1>Orientadores</h1>
+        <hr>
+
+        <!--Primeira Linha -->
+
+        <div class="row">
+
+        	<!-- Primeira coluna  --> 
+
+        	<div class="col-sm-6">
+        		<h3>Cadastrar Orientadores:</h3>
+				<hr>
+
+        		<form method="POST">
+					<div class="form-group">
+						<label for="nome" class="h4">Nome:</label>
+						<input id="nome" type="text" name="nome" class="form-control" placeholder="nome">
+					</div>
+
+					<div class="form-group">
+						<label for="senha" class="h4">Email:</label>
+						<input id="email" type="email" name="email" class="form-control" placeholder="email">
+					</div>
+
+					<div class="form-group">
+						<input class="btn btn-success" type="submit" value="Enviar acesso">
+					</div>
+				</form>
+        	</div>
+
+        	<!-- Segunda coluna -->
+
+        	<div class="col-sm-6">
+        		<h3>Orientadores Cadastrados:</h3>
+        		<hr>
+
+        		<table class="table table-sm table-hover table-striped table-bordered text-center">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Fulano</td>
+							<td>teste@teste.com.br</td>
+						</tr>
+
+						<tr>
+							<th scope="row">2</th>
+							<td>Ciclano</td>
+							<td>teste@teste.com.br</td>
+						</tr>
+
+						<tr>
+							<th scope="row">3</th>
+							<td>Beltrano</td>
+							<td>teste@teste.com.br</td>
+						</tr>
+
+						<tr>
+							<th scope="row">4</th>
+							<td>Rodinei</td>
+							<td>teste@teste.com.br</td>
+						</tr>
+					</tbody>	
+				</table>
+
+        	</div>
+        </div>
+                
+                
+	</div>
+
+	
+	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
