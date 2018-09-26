@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Projeto TCC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+	<style type="text/css">
+		
+		.separator{
+			height: 40px;
+			border-left: 2px solid;
+			margin-right: 20px;
+			border-color: white; 
+
+		}
+	</style>
+</head>
+
+<body style="background-color: #3f3f3f">
+	
+
+	<div class="container" style="background-color: white;">
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="navbar-brand">Aluno</div>
+			<div class="separator"></div>
+
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="navbar-collapse collapse" id="navbarMenu">
+				
+				<div class="navbar-nav">
+						
+
+						<a href="index.html"><button class="btn btn-primary nav-item nav-link active" style="margin-right: 20px; color: white;">Cadastrar trabalho</button></a>
+						 
+						<a href="orientadores.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Orientadores</button></a>
+
+						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Cronograma</button>
+						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Sair</button>
+				
+				</div>
+
+			</div>
+		</nav>
+
+		<hr>
+
+
+		<h1>Cadastrar tabalho</h1>
+		<hr>
+
+	
+		<form method="POST">
+
+					<div class="form-group">
+			 			<label for="estado" class="h5">Tipo de trabalho:</label>
+			 			<select name="estado" id="estado" class="form-control">
+			 				<option value="0">Artigo</option>
+			 				<option value="1">Monografia</option>
+			 				<option value="1">Projeto</option>
+			 				<option value="1">Rodinei</option>
+			 			</select>
+			 		</div>
+
+					<div class="form-group">
+						<label for="email" class="h5">Título: *</label>
+						<input type="text" name="titulo" id="titulo" class="form-control">
+					</div>
+
+					<div class="form-group">
+			 			<label for="estado" class="h5">Orientador:</label>
+			 			<select name="estado" id="estado" class="form-control">
+			 				<option value="0">Fulano</option>
+			 				<option value="1">Ciclano</option>
+			 				<option value="1">Beltrano</option>
+			 				<option value="1">Rodinei</option>
+			 			</select>
+			 		</div>
+
+			 		<hr>
+
+			 		<h3>Autores:</h3>
+			 		<hr>
+
+			 		<form>
+					  <div class="row">
+					    <div class="col">
+					    	<label for="nome" class="h5">Nome:</label>
+
+					        <input id="nome" type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">Email:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">RA:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					  </div>
+
+					  <hr>
+
+					  <div class="row">
+					    <div class="col">
+					    	<label for="nome" class="h5">Nome:</label>
+
+					        <input id="nome" type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">Email:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">RA:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					  </div>
+
+					  <hr>
+
+					  <div class="row">
+					    <div class="col">
+					    	<label for="nome" class="h5">Nome:</label>
+
+					        <input id="nome" type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">Email:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					    <div class="col">
+					    	<label for="nome" class="h5">RA:</label>
+					     	<input type="text" class="form-control" placeholder="">
+					    </div>
+					  </div>
+
+					  <hr>
+
+
+					</form>
+
+					
+
+					<input type="submit" value="Cadastrar" class="btn btn-success">
+
+				</form>
+	</div>
+</body>
