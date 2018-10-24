@@ -3,11 +3,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Orientadores</title>
+	<title>Projeto TCC</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
-	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 	<style type="text/css">
 		
@@ -35,7 +38,7 @@
 			<div class="navbar-collapse collapse" id="navbarMenu">
 				
 				<div class="navbar-nav">
-					
+						
 
 						<a href="index.html"><button class="btn btn-primary nav-item nav-link active" style="margin-right: 20px; color: white;">Diretrizes</button></a>
 						 
@@ -53,84 +56,42 @@
 
 		<hr>
 
-		<h1>Orientadores</h1>
+		<h1>Definição da Banca Avaliadora</h1>
         <hr>
 
         <!--Primeira Linha -->
 
         <div class="row">
 
-        	<!-- Primeira coluna  --> 
+        	<form>
+        		<div class="form-group">
+        			<label for=""></label>
+        		</div>
+        	</form>
 
-        	<div class="col-sm-6">
-        		<h3>Cadastrar Orientadores:</h3>
-				<hr>
-
-        		<form method="POST">
-					<div class="form-group">
-						<label for="nome" class="h4">Nome:</label>
-						<input id="nome" type="text" name="nome" class="form-control" placeholder="nome">
-					</div>
-
-					<div class="form-group">
-						<label for="senha" class="h4">Email:</label>
-						<input id="email" type="email" name="email" class="form-control" placeholder="email">
-					</div>
-
-					<div class="form-group">
-						<input class="btn btn-success" type="submit" value="Enviar acesso">
-					</div>
-				</form>
-        	</div>
-
-        	<!-- Segunda coluna -->
-
-        	<div class="col-sm-6">
-        		<h3>Orientadores Cadastrados:</h3>
-        		<hr>
-
-        		<table class="table table-sm table-hover table-striped table-bordered text-center">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nome</th>
-							<th>Email</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Fulano</td>
-							<td>teste@teste.com.br</td>
-						</tr>
-
-						<tr>
-							<th scope="row">2</th>
-							<td>Ciclano</td>
-							<td>teste@teste.com.br</td>
-						</tr>
-
-						<tr>
-							<th scope="row">3</th>
-							<td>Beltrano</td>
-							<td>teste@teste.com.br</td>
-						</tr>
-
-						<tr>
-							<th scope="row">4</th>
-							<td>Rodinei</td>
-							<td>teste@teste.com.br</td>
-						</tr>
-					</tbody>	
-				</table>
-
-        	</div>
+        	
         </div>
                 
                 
 	</div>
 
+	<script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+        $('#datepicker2').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+        $('#datepicker3').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+        $('#datepicker4').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
 	
 	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>

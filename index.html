@@ -44,6 +44,8 @@
 						 
 						<a href="orientadores.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Orientadores</button></a>
 
+						<a href="banca.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Banca</button></a>
+
 						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Cronograma</button>
 						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Sair</button>
 					
@@ -61,159 +63,110 @@
 
         <div class="row">
 
-        	<!-- Primeira coluna  --> 
-
-        	<div class="col-sm-6">
-        		<form method="POST" id="diretrizes">
-                	<div class="form-group">
-						<h3>Tipos de trabalhos:</h3>
-						<hr>
-
-						<table class="table table-sm table-hover table-striped table-bordered text-center">
-							<thead class="thead-dark">
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Tipo</th>
-									<th>Quantidade máxima de autores</th>
-									<th>Permitir</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Artigo</td>
-									<td>
-										<select id=cbQuantidade form="">
-										    <option value="1" >1</option>
-										    <option value="2" >2</option>
-										    <option value="3" >3</option>
-										    <option value="4" >4</option>
-										</select>
-									</td>
-									<td><input type="checkbox" name=""></td>
-								</tr>
-
-								<tr>
-									<th scope="row">2</th>
-									<td>Monografia</td>
-									<td>
-										<select id=cbQuantidade form="">
-										    <option value="1" >1</option>
-										    <option value="2" >2</option>
-										    <option value="3" >3</option>
-										    <option value="4" >4</option>
-										</select>
-									</td>
-									<td><input type="checkbox" name=""></td>
-								</tr>
-
-								<tr>
-									<th scope="row">3</th>
-									<td>Projeto</td>
-									<td>
-										<select id=cbQuantidade form="">
-										    <option value="1" >1</option>
-										    <option value="2" >2</option>
-										    <option value="3" >3</option>
-										    <option value="4" >4</option>
-										</select>
-									</td>
-									<td><input type="checkbox" name=""></td>
-								</tr>
-
-								<tr>
-									<th scope="row">4</th>
-									<td>Estudo de caso</td>
-									<td>
-										<select id=cbQuantidade form="">
-										    <option value="1" >1</option>
-										    <option value="2" >2</option>
-										    <option value="3" >3</option>
-										    <option value="4" >4</option>
-										</select>
-									</td>
-									<td><input type="checkbox" name=""></td>
-								</tr>
-							</tbody>	
-						</table>
-					</div>
-
-					<div class="form-group">
-						<h3>Áreas:</h3>
-						<hr>
-
-
-					</div>
-
-					<div class="form-group">
-						<input class="btn btn-success" type="submit" value="Salvar">
-						<hr>
-					</div>
-                </form>
-        	</div>
-
-        	<!-- Segunda coluna -->
-
-        	<div class="col-sm-6">
-        		<h3>Datas:</h3>
-        		<hr>
-
-        		<div class="row">
-        			<div class="col-sm-8">
-	        			<div class="form-group">
-	        				<input id="email" type="email" name="email" class="form-control" placeholder="Evento...">
-	        			</div>
-        			</div>
-
-	        		<div class="col-sm-4">
-	        			<input id="datepicker" width="">
+        	<div class="col-sm-12">
+        		<form>
+	        		<div class="form-group">
+	        			<label for="tipo" class="h4">Tipo de trabalho:</label>
+				 			<select name="tipo" id="tipo" class="form-control">
+				 				<option value="0">Artigo</option>
+				 				<option value="1">Monografia</option>
+				 			</select>
 	        		</div>
-        		</div>
 
-        		<hr style="margin-top: 0rem;">
-
-        		<div class="row">
-        			<div class="col-sm-8">
-	        			<div class="form-group">
-	        				<input id="email" type="email" name="email" class="form-control" placeholder="Evento...">
-	        			</div>
-        			</div>
-
-	        		<div class="col-sm-4">
-	        			<input id="datepicker2" width="">
+	        		<div class="form-group">
+	        			<label for="qtdMax" class="h4">Quantidade máxima de autores:</label>
+	        			<input type="number" class="form-control">
 	        		</div>
-        		</div>
 
-        		<div class="row">
-        			<div class="col-sm-8">
-	        			<div class="form-group">
-	        				<input id="email" type="email" name="email" class="form-control" placeholder="Evento...">
-	        			</div>
-        			</div>
+	        		<label class="h2">Temas:</label>
+	        		<hr>
 
-	        		<div class="col-sm-4">
-	        			<input id="datepicker3" width="">
-	        		</div>
-        		</div>
+	        		<table class="table table-sm table-hover table-striped table-bordered text-center" id="temas">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Tema</th>
+								<th></th>
+							</tr>
+						</thead>
 
-        		<hr style="margin-top: 0rem;">
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Desenvolvimento Web</td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
 
-        		<div class="row">
-        			<div class="col-sm-8">
-	        			<div class="form-group">
-	        				<input id="email" type="email" name="email" class="form-control" placeholder="Evento...">
-	        			</div>
-        			</div>
+							<tr>
+								<th scope="row">2</th>
+								<td>Tecnologia na Educação</td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
 
-	        		<div class="col-sm-4">
-	        			<input id="datepicker4" width="">
-	        		</div>
-        		</div>
+							<tr>
+								<th scope="row">3</th>
+								<td>Inteligência Artificial</td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
+						</tbody>	
+					</table>
 
-        		<hr style="margin-top: 0rem;">
+					<label for="tema" class="h5">Tema:</label>
+					<input type="text" id="tema" class="form-control"><br>
+
+					<button class="btn btn-primary" id="adicionarTema">Adicionar</button><br>
+					<hr>
+
+	        		<label class="h2">Datas:</label>
+	        		<hr>	
+
+	        		<table class="table table-sm table-hover table-striped table-bordered text-center" id="datas">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Evento</th>
+								<th>Data</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Entrega da Introdução</td>
+								<td>10/09/2018</td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
+
+							<tr>
+								<th scope="row">2</th>
+								<td>Materiais e métodos</td>
+								<td>15/10/2018</td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
+
+							
+						</tbody>	
+					</table>
+
+	        		<label for="evento" class="h5">Evento:</label>
+	        		<input type="text" class="form-control" id="evento">
+
+	        		<label for="datepicker" class="h5">Data:</label>
+	        		<input id="datepicker"><br>
+
+	        		<button class="btn btn-primary" id="adicionarData">Adicionar</button>
+
+	        		<hr>
+
+	        		<button class="btn btn-success">Salvar</button>
+
+	        		
+        		</form>
         	</div>
         </div>
+
+       
                 
                 
 	</div>
@@ -222,22 +175,12 @@
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4'
         });
-
-        $('#datepicker2').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-
-        $('#datepicker3').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-
-        $('#datepicker4').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
     </script>
 	
 	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/script.js"></script>
 
 </body>
 </html>
