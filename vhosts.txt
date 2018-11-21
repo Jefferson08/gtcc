@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@projeto.pc
+	ServerName projeto.pc
+	ServerAlias projeto.pc
+	DocumentRoot c:/wamp64/www/projeto
+	ErrorLog "logs/projeto-error.log"
+	CustomLog "logs/projeto-acess.log" common
+</VirtualHost>

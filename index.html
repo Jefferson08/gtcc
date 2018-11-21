@@ -1,186 +1,31 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Projeto TCC</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+	<title>Projeto</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Classificados</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
-	<style type="text/css">
-		
-		.separator{
-			height: 40px;
-			border-left: 2px solid;
-			margin-right: 20px;
-			border-color: white; 
-
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="assets/css/simple-sidebar.css" rel="stylesheet">
 </head>
-<body style="background-color: #3f3f3f;">
+<body>
 
-	<div class="container" style="background-color: white;">
-		
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="navbar-brand">Coordenador</div>
-			<div class="separator"></div>
-
-			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="navbar-collapse collapse" id="navbarMenu">
-				
-				<div class="navbar-nav">
-						
-
-						<a href="index.html"><button class="btn btn-primary nav-item nav-link active" style="margin-right: 20px; color: white;">Diretrizes</button></a>
-						 
-						<a href="orientadores.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Orientadores</button></a>
-
-						<a href="banca.html"><button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Banca</button></a>
-
-						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Cronograma</button>
-						<button class="btn btn-primary nav-item nav-link" style="margin-right: 20px; color: white;">Sair</button>
-					
-				</div>
-
+	<div class="container-fluid">
+		<div class="box">
+			<div class="titulo">
+				<h1>Acesso ao login</h1>
+				<hr>
 			</div>
-		</nav>
 
-		<hr>
-
-		<h1>Diretrizes dos trabalhos</h1>
-        <hr>
-
-        <!--Primeira Linha -->
-
-        <div class="row">
-
-        	<div class="col-sm-12">
-        		<form>
-	        		<div class="form-group">
-	        			<label for="tipo" class="h4">Tipo de trabalho:</label>
-				 			<select name="tipo" id="tipo" class="form-control">
-				 				<option value="0">Artigo</option>
-				 				<option value="1">Monografia</option>
-				 			</select>
-	        		</div>
-
-	        		<div class="form-group">
-	        			<label for="qtdMax" class="h4">Quantidade máxima de autores:</label>
-	        			<input type="number" class="form-control">
-	        		</div>
-
-	        		<label class="h2">Temas:</label>
-	        		<hr>
-
-	        		<table class="table table-sm table-hover table-striped table-bordered text-center" id="temas">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Tema</th>
-								<th></th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Desenvolvimento Web</td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-							</tr>
-
-							<tr>
-								<th scope="row">2</th>
-								<td>Tecnologia na Educação</td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-							</tr>
-
-							<tr>
-								<th scope="row">3</th>
-								<td>Inteligência Artificial</td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-							</tr>
-						</tbody>	
-					</table>
-
-					<label for="tema" class="h5">Tema:</label>
-					<input type="text" id="tema" class="form-control"><br>
-
-					<button class="btn btn-primary" id="adicionarTema">Adicionar</button><br>
-					<hr>
-
-	        		<label class="h2">Cronograma:</label>
-	        		<hr>	
-
-	        		<table class="table table-sm table-hover table-striped table-bordered text-center" id="datas">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Evento</th>
-								<th>Data</th>
-								<th></th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Entrega da Introdução</td>
-								<td>10/09/2018</td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-							</tr>
-
-							<tr>
-								<th scope="row">2</th>
-								<td>Materiais e métodos</td>
-								<td>15/10/2018</td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-							</tr>
-
-							
-						</tbody>	
-					</table>
-
-	        		<label for="evento" class="h5">Evento:</label>
-	        		<input type="text" class="form-control" id="evento">
-
-	        		<label for="datepicker" class="h5">Data:</label>
-	        		<input id="datepicker"><br>
-
-	        		<button class="btn btn-primary" id="adicionarData">Adicionar</button>
-
-	        		<hr>
-
-	        		<button class="btn btn-success">Salvar</button>
-
-	        		
-        		</form>
-        	</div>
-        </div>
-
-       
-                
-                
+			<div class="row">
+				<div class="botoes flex-column">
+					<a href="http://projeto.pc/coordenador/login"><button class="btn btn-outline-danger">Coordenador</button></a>
+					<a href="http://projeto.pc/orientador/login"><button class="btn btn-outline-primary">Orientadores</button></a>
+					<a href="http://projeto.pc/aluno/login"><button class="btn btn-outline-success">Alunos</button></a>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-    </script>
-	
-	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
-
-	<script type="text/javascript" src="assets/js/script.js"></script>
 
 </body>
 </html>
