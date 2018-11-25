@@ -32,7 +32,7 @@
 					$currentAction = 'index';			
 				} else { //Se o controller existe 
 					
-					echo "Controller: ".$currentController." EXISTE!!!";
+					//echo "Controller: ".$currentController." EXISTE!!!";
 
 					array_shift($url); //Remove o controller do array, e o action passa a ser o primeiro
 

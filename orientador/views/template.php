@@ -7,7 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/style.css">
 	<link href="<?php echo BASE_URL; ?>assets/css/simple-sidebar.css" rel="stylesheet">
-    
 </head>
 <body>
 
@@ -23,17 +22,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>cadastrarTrabalho">Cadastrar Trabalho</a>
+                    <a href="<?php echo BASE_URL; ?>cadastrarTrabalho">Trabalhos e etapas</a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>cronograma">Cronograma</a>
+                    <a href="<?php echo BASE_URL; ?>cronograma">Orientações</a>
                 </li>
                 <li>
                     <a href="<?php echo BASE_URL; ?>materiais">Materiais</a>
                 </li>
-                <li>
-                    <a href="#">Outro item</a>
-                </li>
+                
                 
             </ul>
         </div>
@@ -47,7 +44,7 @@
 
 			<div class="separator"></div>
 
-			<div class="navbar-brand">Aluno</div>
+			<div class="navbar-brand">Orientador</div>
 
 			<div class="navbar-nav ml-auto">
 

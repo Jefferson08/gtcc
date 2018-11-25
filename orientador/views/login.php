@@ -23,8 +23,8 @@
 	<form method="POST" action="<?php echo BASE_URL; ?>login/entrar/">
 
 		<div class="form-group">
-			<label for="ra">RA: *</label>
-			<input type="text" name="ra" id="ra" class="form-control">
+			<label for="ra">Email: *</label>
+			<input type="email" name="email" id="email" class="form-control">
 		</div>
 
 		<div class="form-group">

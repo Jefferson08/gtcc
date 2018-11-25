@@ -21,7 +21,7 @@
 			//status 2 - alert Email e/ou senha inválidos
 
 
-			$user = new Usuarios();
+			$user = new Orientadores();
 
 			if (isset($_POST['email'])) {
 

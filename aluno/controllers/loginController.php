@@ -8,6 +8,7 @@
 			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
 				header("Location: ".BASE_URL);
 			} else {
+				echo "Entrou aqui";
 				$this->loadTemplate('login', $status);
 			}
 
@@ -21,15 +22,15 @@
 			//status 2 - alert Email e/ou senha inválidos
 
 
-			$user = new Usuarios();
+			$aluno = new Alunos();
 
-			if (isset($_POST['email'])) {
+			if (isset($_POST['ra'])) {
 
-				if (!empty($_POST['email']) && !empty($_POST['senha'])) {
-					$email = addslashes($_POST['email']);
+				if (!empty($_POST['ra']) && !empty($_POST['senha'])) {
+					$ra = addslashes($_POST['ra']);
 					$senha = $_POST['senha'];
 
-					if ($user->login($email, $senha)) { //Verifica o login
+					if ($aluno->login($ra, $senha)) { //Verifica o login
 						header("Location: ".BASE_URL);
 					} else {
 						$status['status'] = 2;
@@ -48,5 +49,7 @@
 			}
 
 		}
+
+	
 	}
  ?>

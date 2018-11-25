@@ -11,6 +11,7 @@
 		<div class="card-body">
 			<h5 class="card-title">Livro arquitetura de software</h5><hr>
 			<p class="card-text">O capítulo 3 apresenta alguns pontos interessantes que podem auxiliar no desenvolvimento do trabalho</p>
+			<a href="#" class="btn btn-secondary">Visualizar</a>
 			<a href="#" class="btn btn-primary">Download</a>
 		</div>
 
