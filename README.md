@@ -2,6 +2,6 @@
 
 ## Algumas tabelas do banco criadas
 
-## Tela de orientador: /trabalhos
+## Tela de orientador: projeto.pc/orientador/trabalhos
 
-## Tela de orientador: /trabalho/etapas/
+## Tela de orientador: projeto.pc/orientador/trabalhos/etapas/
