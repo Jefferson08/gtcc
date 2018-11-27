@@ -4,9 +4,9 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Projeto</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link href="assets/css/simple-sidebar.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/style.css">
+	<link href="<?php echo BASE_URL; ?>assets/css/simple-sidebar.css" rel="stylesheet">
 </head>
 <body>
 
@@ -31,7 +31,10 @@
                     <a href="<?php echo BASE_URL; ?>cronograma">Cronograma</a>
                 </li>
                 <li>
-                    <a href="#">Banca</a>
+                    <a href="<?php echo BASE_URL; ?>trabalhos">Trabalhos</a>
+                </li>
+                <li>
+                    <a href="<?php echo BASE_URL; ?>banca">Banca</a>
                 </li>
                 
             </ul>

@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h1>Trabalhos sob orientação</h1>
+	<h1>Trabalhos</h1>
 	<hr>
 	
 	<div class="card">
@@ -18,7 +18,9 @@
 				</ul>
 			</p>
 			<hr>
-			<a href="<?php echo BASE_URL; ?>trabalhos/etapas/" class="btn btn-primary">Visualizar etapas</a>
+
+			<a href="#" class="btn btn-primary">Visualizar</a>
+			<a href="<?php echo BASE_URL; ?>trabalhos/avaliar/" class="btn btn-success">Avaliar</a>
 		</div>
 
 		<div class="card-footer text-muted">
@@ -44,17 +46,9 @@
 			</p>
 			<hr>
 
-			<a href="<?php echo BASE_URL; ?>trabalhos/etapas/">
-				<button class="btn btn-primary">
-					Visualizar Etapas
-				</button>
-			</a>
+			<a href="#" class="btn btn-primary">Visualizar</a>
+			<a href="<?php echo BASE_URL; ?>trabalhos/avaliar/" class="btn btn-success">Avaliar</a>
 
-			<a href="<?php echo BASE_URL; ?>trabalhos/avaliar/">
-				<button class="btn btn-success">
-					Avaliar
-				</button>
-			</a>
 		</div>
 
 		<div class="card-footer text-muted">

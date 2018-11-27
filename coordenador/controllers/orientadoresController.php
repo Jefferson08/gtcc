@@ -9,5 +9,10 @@
 
 		}
 
+		public function orientacoes(){
+
+			$this->loadTemplate('orientacoes');
+		}
+
 	}
  ?>

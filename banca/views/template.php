@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/style.css">
 	<link href="<?php echo BASE_URL; ?>assets/css/simple-sidebar.css" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -22,15 +23,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>trabalhos">Trabalhos e etapas</a>
+                    <a href="<?php echo BASE_URL; ?>etapas">Trabalhos</a>
                 </li>
-                <li>
-                    <a href="<?php echo BASE_URL; ?>orientacoes">Orientações</a>
-                </li>
-                <li>
-                    <a href="<?php echo BASE_URL; ?>materiais">Materiais</a>
-                </li>
-                
                 
             </ul>
         </div>
@@ -44,11 +38,11 @@
 
 			<div class="separator"></div>
 
-			<div class="navbar-brand">Orientador</div>
+			<div class="navbar-brand">Avaliador</div>
 
 			<div class="navbar-nav ml-auto">
 
-					<a href=""><button class="btn btn-primary nav-item nav-link headerButtons" style="margin-right: 20px; color: white;">Notificações</button></a>
+					
 					
 					<a href="<?php echo BASE_URL; ?>/logout"><button class="btn btn-primary nav-item nav-link headerButtons" style="margin-right: 20px; color: white;">Sair</button></a>
 				

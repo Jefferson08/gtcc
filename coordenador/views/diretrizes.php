@@ -54,7 +54,6 @@
 			<input type="text" id="tema" class="form-control"><br>
 
 			<button class="btn btn-primary" id="adicionarTema">Adicionar</button><br>
-			<hr>
 
     		
 

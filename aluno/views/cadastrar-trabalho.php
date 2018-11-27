@@ -5,68 +5,60 @@
 
 	<hr>
 
-	<div class="form-group">
-		<label for="estado" class="h5">Tema:</label>
-		<select name="estado" id="estado" class="form-control">
-			<option value="0">Desenvolvimento Web</option>
-			<option value="1">Tecnologia na Educação</option>
-			<option value="2">Inteligência Artificial</option>
-		</select>
-	</div>
+	<form method="POST" action="http://projeto.pc/teste.php">
 
-	<div class="form-group">
-		<label for="titulo" class="h5">Título: *</label>
-		<input type="text" name="titulo" id="titulo" class="form-control">
-	</div>
+		<div class="form-group">
+			<label for="tema" class="h5">Tema:</label>
+			<select name="tema" id="tema" class="form-control">
+				<option value="0">Desenvolvimento Web</option>
+				<option value="1">Tecnologia na Educação</option>
+				<option value="2">Inteligência Artificial</option>
+			</select>
+		</div>
 
-	<div class="form-group">
-		<label for="orientador" class="h5">Orientador:</label>
-		<select name="orientador" id="orientador" class="form-control">
-			<option value="0">Fulano</option>
-			<option value="1">Ciclano</option>
-			<option value="1">Beltrano</option>
-			<option value="1">Rodinei</option>
-		</select>
-	</div>
+		<div class="form-group">
+			<label for="titulo" class="h5">Título: *</label>
+			<input type="text" name="titulo" id="titulo" class="form-control">
+		</div>
 
-	<hr>
+		<div class="form-group">
+			<label for="orientador" class="h5">Orientador:</label>
+			<select name="orientador" id="orientador" class="form-control">
+				<option value="0">Orientador1</option>
+				<option value="0">Orientador2</option>
+				<option value="0">Orientador3</option>
+				<option value="0">Orientador4</option>
+				
+			</select>
+		</div>
 
-	<h3>Autores: (max 3)</h3>
-	<hr>
+		<hr>
 
-	<table class="table table-sm table-hover table-striped table-bordered text-center" id="datas">
-		<thead class="thead-dark">
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">Nome</th>
-				<th></th>
-			</tr>
-		</thead>
+		<h3>Autores: (max 3)</h3>
+		<hr>
 
-		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Fulano da Silva</td>
-				<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-			</tr>
+		<table class="table table-sm table-hover table-striped table-bordered text-center" id="alunos">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nome</th>
+					<th></th>
+				</tr>
+			</thead>
 
-			<tr>
-				<th scope="row">2</th>
-				<td>Ciclano Pereira</td>
-				<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-			</tr>
+			<tbody>
 
-			
-		</tbody>	
-	</table>
+			</tbody>	
+		</table>
 
-	<label for="RA" class="h5">RA:</label>
-	<input type="text" class="form-control" id="RA"><br>
+		<label for="ra" class="h5">RA:</label>
+		<input type="text" class="form-control" id="ra"><br>
 
 
-	<button class="btn btn-primary" id="adicionarData">Adicionar</button>
+		<button class="btn btn-primary" id="adicionarAluno">Adicionar</button>
 
-	<hr>
+		<hr>
 
-	<button class="btn btn-success">Salvar</button>
+		<input type="submit" value="Salvar" class="btn btn-success">
+	</form>
 </div>

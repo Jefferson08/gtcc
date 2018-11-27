@@ -1,6 +1,6 @@
 <div class="container">
 
-	<h1>Trabalhos sob orientação</h1>
+	<h1>Trabalhos</h1>
 	<hr>
 	
 	<div class="card">

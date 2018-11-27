@@ -23,16 +23,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>cadastrarTrabalho">Cadastrar Trabalho</a>
+                    <a href="<?php echo BASE_URL; ?>etapas">Etapas</a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>cronograma">Cronograma</a>
+                    <a href="<?php echo BASE_URL; ?>orientacoes">Orientações</a>
                 </li>
                 <li>
                     <a href="<?php echo BASE_URL; ?>materiais">Materiais</a>
                 </li>
                 <li>
-                    <a href="#">Outro item</a>
+                    <a href="<?php echo BASE_URL; ?>notas">Notas</a>
                 </li>
                 
             </ul>

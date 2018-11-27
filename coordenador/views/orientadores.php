@@ -34,33 +34,42 @@
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
 						<th>Email</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<tr>
 						<th scope="row">1</th>
-						<td>Fulano</td>
-						<td>teste@teste.com.br</td>
+						<td>Orientador 1</td>
+						<td>orientador1@teste.com</td>
+						<td>
+							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
+							<a href="#" class="btn btn-danger">Excluir</a>
+						</td>
 					</tr>
 
 					<tr>
 						<th scope="row">2</th>
-						<td>Ciclano</td>
-						<td>teste@teste.com.br</td>
+						<td>Orientador 2</td>
+						<td>orientador2@teste.com</td>
+						<td>
+							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
+							<a href="#" class="btn btn-danger">Excluir</a>
+						</td>
 					</tr>
 
 					<tr>
 						<th scope="row">3</th>
-						<td>Beltrano</td>
-						<td>teste@teste.com.br</td>
+						<td>Orientador 3</td>
+						<td>orientador3@teste.com</td>
+						<td>
+							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
+							<a href="#" class="btn btn-danger">Excluir</a>
+						</td>
 					</tr>
 
-					<tr>
-						<th scope="row">4</th>
-						<td>Rodinei</td>
-						<td>teste@teste.com.br</td>
-					</tr>
+					
 				</tbody>	
 			</table>
 

@@ -16,39 +16,7 @@
 			<a href="#" class="btn btn-secondary">Download</a>
 		</div>
 
-		<div class="card">
-			<div class="card-header"><strong>Comentários:</strong></div>
-
-			<div class="card-body">
-				
-
-				<div class="card">
-					<div class="card-header">
-						Orientador 1, às 13:44:20s
-					</div>
-
-					<div class="card-body">
-						<p class="card-text">
-							Nessa introdução, é importante também explicar os objetivos da pesquisa e as metodologia adotadas durante o processo.
-						</p>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="form-group">
-					<textarea class="form-control">
-						
-					</textarea>
-				</div>
-
-				<button class="btn btn-primary">Enviar</button>
-
-
-
-
-			</div>
-		</div>
+		
 	</div>
 
 	<hr>
@@ -61,10 +29,6 @@
 			<h5 class="card-title">Métodos</h5><hr>
 			<a href="#" class="btn btn-primary">Visualizar</a>
 			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
-
-		<div class="card-footer text-muted">
-		    Encerra em: 24 dias
 		</div>
 	</div>
 
@@ -79,10 +43,6 @@
 			<a href="#" class="btn btn-primary">Visualizar</a>
 			<a href="#" class="btn btn-secondary">Download</a>
 		</div>
-
-		<div class="card-footer text-muted">
-		    Encerra em: 30 dias
-		</div>
 	</div>
 
 	<hr>
@@ -95,10 +55,6 @@
 			<h5 class="card-title">Conclusão</h5><hr>
 			<a href="#" class="btn btn-primary">Visualizar</a>
 			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
-
-		<div class="card-footer text-muted">
-		    Encerra em: 12 dias
 		</div>
 	</div>
 </div>
