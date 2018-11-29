@@ -3,9 +3,11 @@
 
 		public function index(){
 
-			
-
-			$this->loadTemplate('home', $dados); //Carrega o template (Topo) e passa o nome da view a ser carregada e os dados
+			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
+				header('Location: '.BASE_URL.'diretrizes');
+			} else {
+				header('Location: '.BASE_URL.'login');
+			}
 
 		}
 

@@ -32,7 +32,6 @@ $('#adicionarAluno').bind('click', function(e){
 
 
 
-
 function addAluno(id, nome){
 
 	console.log("entrou na função");

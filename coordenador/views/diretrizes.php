@@ -5,16 +5,28 @@
 <h1>Diretrizes dos trabalhos</h1>
 <hr>
 
-<!--Primeira Linha -->
+<?php 
+	if ($status == 1) {
+		?>
+			<div class="alert alert-warning">Insira pelo menos um tema!!!</div>
+		<?php
+	} else if($status == 2){
+		?>
+			<div class="alert alert-success">Diretrizes Salvas!!!</div>
+		<?php
+	}
+
+
+ ?>
 
 <div class="row">
 
 	<div class="col-sm-12">
-		<form>
+		<form method="POST" action="<?php echo BASE_URL; ?>diretrizes/cadastrar/">
 
     		<div class="form-group">
     			<label for="qtdMax" class="h2">Quantidade máxima de autores:</label><br><br>
-    			<input type="number" class="form-control">
+    			<input type="number" name="qtdMax" class="form-control" value="<?php echo $qtdMax; ?>">
     		</div>
 
     		<label class="h2">Temas:</label>
@@ -25,41 +37,33 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Tema</th>
-						<th></th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Desenvolvimento Web</td>
-						<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-					</tr>
+					<?php foreach ($temas as $tema):
+						?>
+							<tr>
+								<th scope="row"><?php echo $tema['id']; ?></th>
+								<td><?php echo $tema['tema']; ?></td>
+								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+							</tr>
+						<?php
 
-					<tr>
-						<th scope="row">2</th>
-						<td>Tecnologia na Educação</td>
-						<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-					</tr>
-
-					<tr>
-						<th scope="row">3</th>
-						<td>Inteligência Artificial</td>
-						<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-					</tr>
+					endforeach;
+					 ?>
 				</tbody>	
 			</table>
 
 			<label for="tema" class="h5">Tema:</label>
 			<input type="text" id="tema" class="form-control"><br>
 
-			<button class="btn btn-primary" id="adicionarTema">Adicionar</button><br>
-
-    		
+			<button class="btn btn-primary" id="addTema">Adicionar</button><br>
 
     		<hr>
 
-    		<button class="btn btn-success">Salvar</button>
+    		<input type="submit" value="Salvar" class="btn btn-success">
 
     		
 		</form>
