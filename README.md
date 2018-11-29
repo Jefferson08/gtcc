@@ -1,3 +1,3 @@
 ## Login de alunos e orientadores funcionando
 
-## Todas as telas criadas
+## Cadastro de diretrizes funcionando
