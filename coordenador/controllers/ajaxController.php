@@ -8,7 +8,6 @@
 		public function excluirTema(){
 
 			if (isset($_POST['id_tema']) && !empty($_POST['id_tema'])) {
-				$dados = array();
 				
 				$id = $_POST['id_tema'];
 
@@ -16,7 +15,20 @@
 
 				$c->excluirTema($id);
 
-				echo json_encode($dados);
+				exit;
+			}
+
+		}
+
+		public function excluirOrientador(){
+
+			if (isset($_POST['id_orientador']) && !empty($_POST['id_orientador'])) {
+				
+				$id = $_POST['id_orientador'];
+
+				$o = new Orientadores();
+
+				$o->excluirOrientador($id);
 
 				exit;
 			}

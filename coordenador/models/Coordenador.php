@@ -65,6 +65,41 @@
 			return $diretrizes;
 		}
 
+		function getCronograma(){
+
+			$cronograma = array();
+
+			$sql = "SELECT * FROM cronograma";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$eventos = $sql->fetchAll();
+
+				$cronograma = $eventos;
+
+				return $cronograma;
+			} else {
+				return $cronograma;
+			}
+		}
+
+		function cadastrarCronograma($eventos, $datas){
+
+			$cronograma = array();
+
+			foreach ($eventos as $evento) {
+				array_push($cronograma, array_push($cronograma['evento'], $evento['evento']));
+			}
+
+			foreach ($datas as $data) {
+				array_push($cronograma['evento'], $data)
+			}
+
+			print_r($cronograma);
+
+		}
+
 		function excluirTema($id){
 
 			$sql = "DELETE FROM temas WHERE id = :id";
@@ -72,6 +107,7 @@
 			$sql->bindValue(':id', $id);
 			$sql->execute();
 		}
+
 
 	}
 

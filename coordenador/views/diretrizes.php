@@ -47,7 +47,7 @@
 							<tr>
 								<th scope="row"><?php echo $tema['id']; ?></th>
 								<td><?php echo $tema['tema']; ?></td>
-								<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+								<td><button class="btn btn-danger" onclick="removerTema(<?php echo $tema['id']; ?>, this);">Excluir</button></td>
 							</tr>
 						<?php
 

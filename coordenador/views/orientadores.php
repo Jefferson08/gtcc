@@ -6,15 +6,27 @@
     		<h3>Cadastrar Orientadores:</h3>
 			<hr>
 
-    		<form method="POST">
+			<?php 
+				if ($status == 1) {
+					?>
+						<div class="alert alert-warning">Preencha os campos!!!</div>
+					<?php
+				} else if($status == 2){
+					?>
+						<div class="alert alert-success">Cadastrado com sucesso!!!</div>
+					<?php
+				}
+			 ?>
+
+    		<form method="POST" action="<?php echo BASE_URL; ?>orientadores/cadastrar/">
 				<div class="form-group">
 					<label for="nome" class="h4">Nome:</label>
-					<input id="nome" type="text" name="nome" class="form-control" placeholder="nome">
+					<input id="nome" type="text" name="nome" class="form-control">
 				</div>
 
 				<div class="form-group">
 					<label for="senha" class="h4">Email:</label>
-					<input id="email" type="email" name="email" class="form-control" placeholder="email">
+					<input id="email" type="email" name="email" class="form-control">
 				</div>
 
 				<div class="form-group">
@@ -39,35 +51,20 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Orientador 1</td>
-						<td>orientador1@teste.com</td>
-						<td>
-							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
-							<a href="#" class="btn btn-danger">Excluir</a>
-						</td>
-					</tr>
+					
+					<?php foreach ($orientadores as $orientador): ?>
 
-					<tr>
-						<th scope="row">2</th>
-						<td>Orientador 2</td>
-						<td>orientador2@teste.com</td>
-						<td>
-							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
-							<a href="#" class="btn btn-danger">Excluir</a>
-						</td>
-					</tr>
+						<tr>
+							<th scope="row"><?php echo $orientador['id']; ?></th>
+							<td><?php echo $orientador['nome']; ?></td>
+							<td><?php echo $orientador['email']; ?></td>
+							<td>
+								<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/<?php echo $orientador['id']; ?>" class="btn btn-primary">Ver orientações</a>
+								<button class="btn btn-danger" onclick="excluirOrientador(<?php echo $orientador['id']; ?>, this);">Excluir</button>
+							</td>
+						</tr>
 
-					<tr>
-						<th scope="row">3</th>
-						<td>Orientador 3</td>
-						<td>orientador3@teste.com</td>
-						<td>
-							<a href="<?php echo BASE_URL; ?>orientadores/orientacoes/" class="btn btn-primary">Ver orientações</a>
-							<a href="#" class="btn btn-danger">Excluir</a>
-						</td>
-					</tr>
+					<?php endforeach ?>
 
 					
 				</tbody>	

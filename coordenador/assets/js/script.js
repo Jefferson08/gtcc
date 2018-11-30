@@ -15,6 +15,38 @@ $('#addTema').bind('click', function(e){
 	}
 });
 
+$('#addEvento').bind('click', function(e){
+	e.preventDefault();
+
+	var evento = $('#evento').val();
+	var data = $('#data').val();
+
+	if (evento == "") {
+		alert("Digite um evento!!!");
+	} else if(data == "") {
+		alert("Digite uma data!!!")
+	} else {
+		addEvento(evento, data);
+	}
+});
+
+
+function addEvento(evento, data){
+	alert("Function add evento!!!");
+
+	var index = $('#cronograma tr').length;
+
+	var novalinha = '<tr> <th scope="row">'+index+'</th> <td>'+evento+'</td> <td>'+data+'</td> <td> <button class="btn btn-danger" onclick="remove(this)">Excluir</button> </td>';
+	novalinha += ' <input type="hidden" name="eventos[]" value="'+evento+'"> ';
+	novalinha += ' <input type="hidden" name="datas[]" value="'+data+'"> </tr>';
+
+	$('#cronograma').append(novalinha);
+
+	$('#evento').val(''); //Limpa os campos após adicionar o evento na tabela
+	$('#data').val('');
+}
+
+
 function addTema(tema){
 
 	var index = $('#temas tr').length;
@@ -26,33 +58,56 @@ function addTema(tema){
 	$('#tema').val('');
 }
 
-remove = function(item){
 
+function removerTema(id, botao){
 	event.preventDefault();
-	
 
-	tr = $(item).closest('tr');
+	tr = $(botao).closest('tr');
 
-	var id = tr.find('th');
-
-	id = id.text();
-	
 	$.ajax({
 		url:'http://projeto.pc/coordenador/ajax/excluirTema/',
 		type:'POST',
 		data:{id_tema:id},
 		dataType:'json',
-		success:function(json){
-
+		complete:function(){
 
 			tr.remove();
 			
-		},
-		error:function(erro){
-			console.log(erro);
 		}
+		
+	});
+}
+
+function excluirOrientador(id, botao){
+	event.preventDefault();
+
+	tr = $(botao).closest('tr');
+
+	$.ajax({
+		url:'http://projeto.pc/coordenador/ajax/excluirOrientador/',
+		type:'POST',
+		data:{id_orientador:id},
+		dataType:'json',
+		complete:function(){
+
+			alert("Excluiu Orientador !!!");
+			tr.remove();
+			
+		}
+		
 	});
 
+}
+
+remove = function(item){
+
+	event.preventDefault();
+
+	var tr = $(item).closest('tr');
+
+	tr.remove();
 
 	return false;
+	
 }
+

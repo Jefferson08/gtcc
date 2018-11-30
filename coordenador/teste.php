@@ -1,3 +1,9 @@
+
 <?php 
-	print_r($_POST);
+	
+	if (isset($_POST['eventos'])) {
+		print_r($_POST);
+	}
  ?>
+
+ 

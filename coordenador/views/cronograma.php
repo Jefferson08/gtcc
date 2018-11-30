@@ -2,45 +2,71 @@
 <div class="container">
 	
 	<h1>Cronograma</h1>
-	<hr>	
-
-	<table class="table table-sm table-hover table-striped table-bordered text-center" id="datas">
-		<thead class="thead-dark">
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">Evento</th>
-				<th>Data</th>
-				<th></th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Entrega da Introdução</td>
-				<td>10/09/2018</td>
-				<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-			</tr>
-
-			<tr>
-				<th scope="row">2</th>
-				<td>Materiais e métodos</td>
-				<td>15/10/2018</td>
-				<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
-			</tr>
-
-			
-		</tbody>	
-	</table>
 	<hr>
 
-	<label for="evento" class="h4">Evento:</label>
-	<input type="text" class="form-control" id="evento"><br>
+	<?php 
+		if ($status == 1) {
+			?>
+				<div class="alert alert-warning">Insira pelo menos 1 tema!!!</div>
+			<?php
+		} else if($status == 2){
+			?>
+				<div class="alert alert-success">Cronograma Salvo!!!</div>
+			<?php
+		}
 
-	<label for="data" class="h4">Data:</label>
-	<input type="text" class="form-control" id="data"><br>
-	<hr>
+	?>
+	<form method="POST" action="<?php echo BASE_URL; ?>cronograma/salvar/">
 
-	<button class="btn btn-primary" id="adicionarData">Adicionar</button>
+		<table class="table table-sm table-hover table-striped table-bordered text-center" id="cronograma">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Evento</th>
+					<th>Data</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				
+
+				<?php foreach($cronograma as $evento): ?>
+
+					<tr>
+						<th scope="row"><?php echo $evento['id']; ?></th>
+						<td><?php echo $evento['evento']; ?></td>
+						<td><?php echo $evento['data']; ?></td>
+						<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+					</tr>
+
+				<?php endforeach; ?>
+				
+				
+			</tbody>	
+		</table>
+		<hr>
+
+	
+		
+		<div class="form-group">
+			<label for="evento" class="h4">Evento:</label>
+			<input type="text" class="form-control" name="evento" id="evento">
+		</div>
+
+		<div class="form-group">
+			<label for="data" class="h4">Data:</label>
+			<input type="text" class="form-control" name="data" id="data">
+		</div>
+
+		<hr>
+
+		<button class="btn btn-primary" id="addEvento">Adicionar</button>
+
+		<hr>
+
+		<input type="submit" value="Salvar" class="btn btn-success" id="salvarCronograma">
+
+	</form>
 
 </div>
