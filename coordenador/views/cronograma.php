@@ -37,7 +37,7 @@
 						<th scope="row"><?php echo $evento['id']; ?></th>
 						<td><?php echo $evento['evento']; ?></td>
 						<td><?php echo $evento['data']; ?></td>
-						<td><button class="btn btn-danger" onclick="remove(this)">Excluir</button></td>
+						<td><button class="btn btn-danger" onclick="excluirEvento(<?php echo $evento['id']; ?>, this);">Excluir</button></td>
 					</tr>
 
 				<?php endforeach; ?>
@@ -56,7 +56,7 @@
 
 		<div class="form-group">
 			<label for="data" class="h4">Data:</label>
-			<input type="text" class="form-control" name="data" id="data">
+			<input type="date" class="form-control" name="data" id="data">
 		</div>
 
 		<hr>

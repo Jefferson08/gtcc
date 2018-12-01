@@ -33,5 +33,19 @@
 				exit;
 			}
 		}
+
+		public function excluirEvento(){
+
+			if (isset($_POST['id_evento']) && !empty($_POST['id_evento'])) {
+				
+				$id = $_POST['id_evento'];
+
+				$c = new Coordenador();
+
+				$c->excluirEvento($id);
+
+				exit;
+			}
+		}
 	}
  ?>

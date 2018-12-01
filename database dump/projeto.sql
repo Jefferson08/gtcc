@@ -45,6 +45,79 @@ INSERT INTO `alunos` VALUES (1,'Aluno 1','aluno1@teste.com',28250001,'095a8630a0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `coordenadores`
+--
+
+DROP TABLE IF EXISTS `coordenadores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coordenadores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `coordenadores`
+--
+
+LOCK TABLES `coordenadores` WRITE;
+/*!40000 ALTER TABLE `coordenadores` DISABLE KEYS */;
+INSERT INTO `coordenadores` VALUES (1,'Coordenador1','coordenador@teste.com','698dc19d489c4e4db73e28a713eab07b');
+/*!40000 ALTER TABLE `coordenadores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cronograma`
+--
+
+DROP TABLE IF EXISTS `cronograma`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cronograma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `evento` varchar(100) NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cronograma`
+--
+
+LOCK TABLES `cronograma` WRITE;
+/*!40000 ALTER TABLE `cronograma` DISABLE KEYS */;
+INSERT INTO `cronograma` VALUES (3,'Entrega da introduÃ§Ã£o','2018-10-11');
+/*!40000 ALTER TABLE `cronograma` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `diretrizes`
+--
+
+DROP TABLE IF EXISTS `diretrizes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `diretrizes` (
+  `qtdMax` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `diretrizes`
+--
+
+LOCK TABLES `diretrizes` WRITE;
+/*!40000 ALTER TABLE `diretrizes` DISABLE KEYS */;
+INSERT INTO `diretrizes` VALUES (5);
+/*!40000 ALTER TABLE `diretrizes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `grupos`
 --
 
@@ -105,7 +178,7 @@ CREATE TABLE `orientadores` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +187,7 @@ CREATE TABLE `orientadores` (
 
 LOCK TABLES `orientadores` WRITE;
 /*!40000 ALTER TABLE `orientadores` DISABLE KEYS */;
-INSERT INTO `orientadores` VALUES (1,'Orientador 1','orientador1@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(2,'Orientador 2','orientador2@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(3,'Orientador 3','orientador3@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(4,'Orientador 4','orientador4@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(5,'Orientador 5','orientador5@teste.com','827ccb0eea8a706c4c34a16891f84e7b');
+INSERT INTO `orientadores` VALUES (1,'Orientador 1','orientador1@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(2,'Orientador 2','orientador2@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(7,'Testando','jefferson_super2009@hotmail.com','698dc19d489c4e4db73e28a713eab07b');
 /*!40000 ALTER TABLE `orientadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +202,7 @@ CREATE TABLE `temas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tema` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,6 +211,7 @@ CREATE TABLE `temas` (
 
 LOCK TABLES `temas` WRITE;
 /*!40000 ALTER TABLE `temas` DISABLE KEYS */;
+INSERT INTO `temas` VALUES (6,'FarmÃ¡cia');
 /*!40000 ALTER TABLE `temas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +227,6 @@ CREATE TABLE `trabalhos` (
   `id_tema` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `id_orientador` int(11) NOT NULL,
-  `id_grupo` int(11) NOT NULL,
   `url` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -176,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-24 22:59:53
+-- Dump completed on 2018-12-01 18:43:00

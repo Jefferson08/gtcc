@@ -76,6 +76,13 @@
 			if ($sql->rowCount() > 0) {
 				$eventos = $sql->fetchAll();
 
+				foreach ($eventos as $key => $evento) { //Formatando as datas pro formato dd/mm/yyyy
+					$data = date_create($evento['data']); 
+					$data = date_format($data, 'd/m/Y');
+
+					$eventos[$key]['data'] = $data;
+				}
+
 				$cronograma = $eventos;
 
 				return $cronograma;
@@ -88,21 +95,40 @@
 
 			$cronograma = array();
 
-			foreach ($eventos as $evento) {
-				array_push($cronograma, array_push($cronograma['evento'], $evento['evento']));
+			foreach ($datas as $key => $data) { //Formatando as datas pro formato dd/mm/yyyy
+
+				$date = date_create($data); 
+				$date = date_format($date, 'Y-m-d');
+
+				$datas[$key] = $date;
 			}
 
-			foreach ($datas as $data) {
-				array_push($cronograma['evento'], $data)
+			for($i = 0; $i < count($eventos); $i++){
+				array_push($cronograma, array("evento" => $eventos[$i], "data" => $datas[$i]));
 			}
 
-			print_r($cronograma);
+			foreach ($cronograma as $evento) {
+				
+				$sql = "INSERT INTO cronograma SET evento = :evento, data = :data";
+				$sql = $this->db->prepare($sql);
+				$sql->bindValue(':evento', $evento['evento']);
+				$sql->bindValue(':data', $evento['data']);
+				$sql->execute();
+			}
 
 		}
 
 		function excluirTema($id){
 
 			$sql = "DELETE FROM temas WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id', $id);
+			$sql->execute();
+		}
+
+		function excluirEvento($id){
+
+			$sql = "DELETE FROM cronograma WHERE id = :id";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id', $id);
 			$sql->execute();

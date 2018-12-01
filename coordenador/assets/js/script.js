@@ -24,7 +24,7 @@ $('#addEvento').bind('click', function(e){
 	if (evento == "") {
 		alert("Digite um evento!!!");
 	} else if(data == "") {
-		alert("Digite uma data!!!")
+		alert("Insira uma data!!!")
 	} else {
 		addEvento(evento, data);
 	}
@@ -32,8 +32,7 @@ $('#addEvento').bind('click', function(e){
 
 
 function addEvento(evento, data){
-	alert("Function add evento!!!");
-
+	
 	var index = $('#cronograma tr').length;
 
 	var novalinha = '<tr> <th scope="row">'+index+'</th> <td>'+evento+'</td> <td>'+data+'</td> <td> <button class="btn btn-danger" onclick="remove(this)">Excluir</button> </td>';
@@ -59,7 +58,7 @@ function addTema(tema){
 }
 
 
-function removerTema(id, botao){
+function excluirTema(id, botao){
 	event.preventDefault();
 
 	tr = $(botao).closest('tr');
@@ -71,6 +70,7 @@ function removerTema(id, botao){
 		dataType:'json',
 		complete:function(){
 
+			alert("Excluiu Tema!!!");
 			tr.remove();
 			
 		}
@@ -97,6 +97,26 @@ function excluirOrientador(id, botao){
 		
 	});
 
+}
+
+function excluirEvento(id, botao){
+	event.preventDefault();
+
+	tr = $(botao).closest('tr');
+
+	$.ajax({
+		url:'http://projeto.pc/coordenador/ajax/excluirEvento/',
+		type:'POST',
+		data:{id_evento:id},
+		dataType:'json',
+		complete:function(){
+
+			alert("Excluiu Evento !!!");
+			tr.remove();
+			
+		}
+		
+	});
 }
 
 remove = function(item){
