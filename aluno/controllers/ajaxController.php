@@ -16,9 +16,28 @@
 				$ra = $_POST['ra'];
 
 				$dados = $a->verificaAluno($ra);
+
+				if (!empty($dados)) {
+					
+					if ($dados['id'] == $_SESSION['cLogin']) { //Se ele estiver colocando o próprio RA
+
+						$dados = array(); //Retorna $dados como um array vazio e exibe o erro aluno não encontrado
+
+						echo json_encode($dados);
+						exit;
+
+					} else {
+						$dados['qtdMax'] = $a->getQtdMax();
+						echo json_encode($dados);
+						exit;
+					}
+				} else {
+					echo json_encode($dados);
+				}
+
+				
 			}
 
-			echo json_encode($dados);
 			exit;
 		}
 	}

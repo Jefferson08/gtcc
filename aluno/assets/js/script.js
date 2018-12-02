@@ -8,39 +8,48 @@ $('#adicionarAluno').bind('click', function(e){
 	e.preventDefault();
 	var ra = $('#ra').val();
 	
-	$.ajax({
-		url:'http://projeto.pc/aluno/ajax/verificaAluno/',
-		type:'POST',
-		data:{ra:ra},
-		dataType:'json',
-		success:function(json){
+	if (ra == "") {
+		alert("Digite o RA do aluno para adicionar!!!");
+	} else {
+		$.ajax({
+			url:'http://projeto.pc/aluno/ajax/verificaAluno/',
+			type:'POST',
+			data:{ra:ra},
+			dataType:'json',
+			success:function(json){
 
-			if (json.length == 0) {
-				alert("Aluno não encontrado!!!");
-			}else{
-				addAluno(json.id, json.nome);
-				$('#ra').val('');
+				if (json.length == 0) {
+					alert("Aluno não encontrado!!!");
+				}else{
+					addAluno(json.id, json.nome, json.qtdMax);
+					$('#ra').val('');
+				}
+				
+			},
+			error:function(erro){
+				alert("ERRO");
+				console.log(erro);
 			}
-			
-		},
-		error:function(erro){
-			console.log(erro);
-		}
-	});
+		});
+	}
 
 });
 
 
 
-function addAluno(id, nome){
+function addAluno(id, nome, qtdMax){
 
-	console.log("entrou na função");
+	var tr = $('#alunos tr').length;
 
-	var index = $('#alunos tr').length;
+	if (tr > qtdMax) {
+		alert("Quantidade máxima de alunos atingida!!!");
+	} else {
+		
+		var novalinha = '<tr> <th scope="row">'+id+'</th> <td>'+nome+'</td> <td> <button class="btn btn-danger" onclick="remove(this)">Excluir</button> </td> <input type="hidden" name="autores[]" value="'+id+'"> </tr>'
 
-	var novalinha = '<tr> <th scope="row">'+index+'</th> <td>'+nome+'</td> <td> <button class="btn btn-danger" onclick="remove(this)">Excluir</button> </td> <input type="hidden" name="nome[]" value="'+id+'"> </tr>'
-
-	$('#alunos').append(novalinha);
+		$('#alunos').append(novalinha);
+	}
+	
 }
 
 remove = function(item){
