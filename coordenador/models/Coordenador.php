@@ -91,6 +91,48 @@
 			}
 		}
 
+		function getTrabalhos(){
+			$trabalhos = array();
+
+			$sql = "SELECT trabalhos.id, temas.tema, trabalhos.id_orientador, orientadores.nome AS orientador, trabalhos.titulo FROM trabalhos, temas, orientadores WHERE trabalhos.id_tema = temas.id AND trabalhos.id_orientador = orientadores.id";
+
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				
+				$trabalhos = $sql->fetchAll();
+
+				foreach ($trabalhos as $key => $trabalho) {
+					
+					$autores = $this->getAutores($trabalho['id']);
+					$trabalhos[$key]["autores"] = $autores;
+
+				}
+
+				return $trabalhos;
+
+			} else {
+				return $trabalhos;
+			}
+
+
+		}
+
+		function getAutores($id_trabalho){
+			$autores = array();
+
+			$sql = "SELECT alunos.nome FROM alunos, grupos WHERE alunos.id = grupos.id_aluno AND id_trabalho = :id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->execute();
+
+			$autores = $sql->fetchAll();
+
+			return $autores;
+
+		}
+
 		function cadastrarCronograma($eventos, $datas){
 
 			$cronograma = array();

@@ -3,7 +3,15 @@
 
 		public function index(){
 
-			$this->loadTemplate('trabalhos');
+			$dados = array();
+
+			$c = new Coordenador();
+
+			$trabalhos = $c->getTrabalhos();
+
+			$dados['trabalhos'] = $trabalhos;
+
+			$this->loadTemplate('trabalhos', $dados);
 		}
 
 		public function etapas(){

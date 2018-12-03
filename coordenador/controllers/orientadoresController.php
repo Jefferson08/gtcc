@@ -32,8 +32,6 @@
 			if (isset($_POST['nome'])) {
 				
 				if (!empty($_POST['nome']) && !empty($_POST['email'])) {
-
-					//FAZER FUNÇÃO PARA ENVIAR EMAIL NO MÉTODO cadastrarOrientador
 					
 					$nome = $_POST['nome'];
 					$email = $_POST['email'];
