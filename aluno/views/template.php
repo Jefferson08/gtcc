@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>etapas">Etapas</a>
+                    <a href="<?php echo BASE_URL; ?>etapas/index/">Etapas</a>
                 </li>
                 <li>
                     <a href="<?php echo BASE_URL; ?>orientacoes">Orientações</a>

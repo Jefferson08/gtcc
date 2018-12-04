@@ -9,3 +9,5 @@
 ## Cadastro de trabalhos funcionando 
 
 ## Coordenador -> Trabalhos Funcionando
+
+## Aluno -> Visualização Etapas e upload arquivo funcionando parcialmente

@@ -110,6 +110,83 @@
 			return $qtdMax;
 		}
 
+		function getIdTrabalho($id_aluno){
+			
+			$sql = "SELECT id_trabalho FROM grupos WHERE id_aluno = :id_aluno";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_aluno', $id_aluno);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetch();
+
+				$id_trabalho = $sql['id_trabalho'];
+
+				return $id_trabalho;
+			} else {
+				$id_trabalho = false;
+
+				return $id_trabalho;
+			}
+		}
+
+		function getEtapa($id_etapa){
+			$sql = "SELECT evento FROM cronograma WHERE id = $id_etapa";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$etapa = $sql['evento'];
+
+			return $etapa;
+		}
+
+		function getEtapas($id_trabalho){
+			$eventos = array();
+
+			$sql = "SELECT * FROM cronograma";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$eventos = $sql->fetchAll();
+
+			foreach ($eventos as $key => $evento) {
+				
+
+				$sql = "SELECT * FROM etapas WHERE id_evento = :id_evento AND id_trabalho = :id_trabalho";
+				$sql = $this->db->prepare($sql);
+				$sql->bindValue(':id_evento', $evento['id']);
+				$sql->bindValue(':id_trabalho', $id_trabalho);
+				$sql->execute();
+
+				if ($sql->rowCount() > 0) {
+					$etapa = $sql->fetch();
+
+					$eventos[$key]["etapa"] = $etapa;
+				} else {
+					$eventos[$key]["etapa"] = array();
+				}
+			}
+
+			/*echo "<pre>";
+			print_r($eventos);
+			echo "</pre>";*/
+
+			return $eventos;
+		}
+
+		function cadastrarEtapa($id_trabalho, $id_evento, $url){
+
+			$sql = 	"INSERT INTO etapas SET id_trabalho = :id_trabalho, id_evento = :id_evento, url = :url";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':id_evento', $id_evento);
+			$sql->bindValue(':url', $url);
+			$sql->execute();
+
+		}
+
 	}
 
  ?>

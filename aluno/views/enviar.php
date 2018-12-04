@@ -4,18 +4,33 @@
 	<h1>Enviar etapa</h1>
 	<hr>
 
-	<h1>Métodos</h1>
+	<?php 
+		if ($status == 1) {
+			?>
+				<div class="alert alert-warning">Somente arquivos PDF!!!</div><hr>
+			<?php
+		} else if($status == 2){
+			?>
+				<div class="alert alert-warning">Selecione um arquivo!!!</div><hr>
+			<?php
+		}
+	 ?>
+
+	<h1><?php echo $evento; ?></h1>
 
 	<hr>
 
 	<h4>Arquivo: (apenas formato .pdf)</h4>
 	<hr>
 
-	<div class="form-group">
-		<input type="file" name="arquivo" id="arquivo">
-	</div>
-	<hr>
+	<form method="POST" enctype="multipart/form-data" action="<?php echo BASE_URL; ?>etapas/salvar/<?php echo $id_evento; ?>">
+		
+		<div class="form-group">
+			<input type="file" name="trabalho">
+		</div>
+		<hr>
 
-	<button class="btn btn-primary">Enviar</button>
+		<input type="submit" value="Enviar" class="btn btn-primary">
+	</form>
 
 </div>

@@ -6,7 +6,7 @@
 			echo "Index";
 
 			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
-				header('Location: '.BASE_URL.'cronograma');
+				header('Location: '.BASE_URL.'etapas/index/'.$_SESSION['cLogin']);
 			} else {
 				header('Location: '.BASE_URL.'login');
 			}
