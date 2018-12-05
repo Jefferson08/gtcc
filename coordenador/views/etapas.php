@@ -6,55 +6,42 @@
 	<h1>Etapas</h1>
 	<hr>
 	
-	<div class="card">
-		<div class="card-header">
-			Enviado em: 10/10/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Introdução</h5><hr>
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
+	<?php foreach($eventos as $evento): ?>
 
-		
-	</div>
+		<?php if (!empty($evento['etapa'])) {
+			?>
+				<div class="card">
+					<div class="card-header">
+						<div class="row">
+							<div class="col-sm-8"><?php echo $evento['data']; ?></div>
+							<div class="col-sm-4">Enviado em: <?php echo $evento['etapa']['data_envio']; ?></div>
+						</div>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $evento['evento']; ?></h5><hr>
+						<a href="../../../trabalhos/<?php echo $evento['etapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
+					</div>
 
-	<hr>
+					<div class="card-footer">
+						Última atualização em <?php echo $evento['etapa']['ultima_atualizacao']; ?>
+					</div>
+				</div>
 
-	<div class="card">
-		<div class="card-header">
-			02/11/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Métodos</h5><hr>
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
-	</div>
+				<hr>
+			<?php
+		} else {
+			?>
+				<div class="card">
+					<div class="card-header"><?php echo $evento['data']; ?></div>
+					<div class="card-body">
+						<h5 class="card-title"><?php echo $evento['evento']; ?></h5><hr>
+						<div class="alert alert-warning">Ainda não enviado!!!</div>
+					</div>
+				</div>
 
-	<hr>
+				<hr>
+			<?php
+		} ?>
 
-	<div class="card">
-		<div class="card-header">
-			01/12/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Desenvolvimento</h5><hr>
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="card">
-		<div class="card-header">
-			14/12/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Conclusão</h5><hr>
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="#" class="btn btn-secondary">Download</a>
-		</div>
-	</div>
+	<?php endforeach; ?>
 </div>

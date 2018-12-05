@@ -82,7 +82,7 @@ CREATE TABLE `cronograma` (
   `evento` varchar(100) NOT NULL,
   `data` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `cronograma` (
 
 LOCK TABLES `cronograma` WRITE;
 /*!40000 ALTER TABLE `cronograma` DISABLE KEYS */;
-INSERT INTO `cronograma` VALUES (3,'Entrega da introduÃ§Ã£o','2018-10-11');
+INSERT INTO `cronograma` VALUES (7,'IntroduÃ§Ã£o','2018-12-14'),(8,'Metodologia','2018-12-25'),(9,'Desenvolvimento','2018-12-17');
 /*!40000 ALTER TABLE `cronograma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,8 +113,35 @@ CREATE TABLE `diretrizes` (
 
 LOCK TABLES `diretrizes` WRITE;
 /*!40000 ALTER TABLE `diretrizes` DISABLE KEYS */;
-INSERT INTO `diretrizes` VALUES (5);
+INSERT INTO `diretrizes` VALUES (3);
 /*!40000 ALTER TABLE `diretrizes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `etapas`
+--
+
+DROP TABLE IF EXISTS `etapas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `etapas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `id_evento` int(11) NOT NULL,
+  `data_envio` datetime NOT NULL,
+  `ultima_atualizacao` datetime NOT NULL,
+  `url` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `etapas`
+--
+
+LOCK TABLES `etapas` WRITE;
+/*!40000 ALTER TABLE `etapas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `etapas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -136,6 +163,7 @@ CREATE TABLE `grupos` (
 
 LOCK TABLES `grupos` WRITE;
 /*!40000 ALTER TABLE `grupos` DISABLE KEYS */;
+INSERT INTO `grupos` VALUES (1,1),(1,2),(1,7),(2,3),(2,9),(2,8);
 /*!40000 ALTER TABLE `grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,7 +206,7 @@ CREATE TABLE `orientadores` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +215,7 @@ CREATE TABLE `orientadores` (
 
 LOCK TABLES `orientadores` WRITE;
 /*!40000 ALTER TABLE `orientadores` DISABLE KEYS */;
-INSERT INTO `orientadores` VALUES (1,'Orientador 1','orientador1@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(2,'Orientador 2','orientador2@teste.com','827ccb0eea8a706c4c34a16891f84e7b'),(7,'Testando','jefferson_super2009@hotmail.com','698dc19d489c4e4db73e28a713eab07b');
+INSERT INTO `orientadores` VALUES (1,'Orientador 1','orientador1@teste.com','698dc19d489c4e4db73e28a713eab07b'),(2,'Orientador 2','orientador2@teste.com','698dc19d489c4e4db73e28a713eab07b'),(3,'Orientador 3','orientador3@teste.com','698dc19d489c4e4db73e28a713eab07b');
 /*!40000 ALTER TABLE `orientadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +230,7 @@ CREATE TABLE `temas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tema` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +239,7 @@ CREATE TABLE `temas` (
 
 LOCK TABLES `temas` WRITE;
 /*!40000 ALTER TABLE `temas` DISABLE KEYS */;
-INSERT INTO `temas` VALUES (6,'FarmÃ¡cia');
+INSERT INTO `temas` VALUES (1,'Tema 1'),(2,'Tema 2'),(3,'Tema 3');
 /*!40000 ALTER TABLE `temas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,12 +251,12 @@ DROP TABLE IF EXISTS `trabalhos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trabalhos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tema` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `id_orientador` int(11) NOT NULL,
-  `url` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,6 +265,7 @@ CREATE TABLE `trabalhos` (
 
 LOCK TABLES `trabalhos` WRITE;
 /*!40000 ALTER TABLE `trabalhos` DISABLE KEYS */;
+INSERT INTO `trabalhos` VALUES (1,2,'InteligÃªncia artificial em azilos',3),(2,3,'Gerenciamento de projeto',1);
 /*!40000 ALTER TABLE `trabalhos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -249,4 +278,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-01 18:43:00
+-- Dump completed on 2018-12-05 17:20:23

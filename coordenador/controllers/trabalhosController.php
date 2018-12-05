@@ -14,9 +14,15 @@
 			$this->loadTemplate('trabalhos', $dados);
 		}
 
-		public function etapas(){
+		public function etapas($id_trabalho = array()){
 
-			$this->loadTemplate('etapas');
+			$dados = array();
+
+			$c = new Coordenador();
+
+			$dados['eventos'] = $c->getEtapas($id_trabalho);
+
+			$this->loadTemplate('etapas', $dados);
 		}
 
 		public function avaliar(){

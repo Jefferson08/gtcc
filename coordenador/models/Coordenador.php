@@ -133,6 +133,57 @@
 
 		}
 
+		function getEtapas($id_trabalho){
+			$eventos = array();
+
+			$sql = "SELECT * FROM cronograma";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$eventos = $sql->fetchAll();
+
+			foreach($eventos as $key => $evento){ //Percorrendo os eventos e formatando as datas
+				$data = date_create($evento['data']); 
+				$data = date_format($data, 'd/m/Y');
+
+				$eventos[$key]['data'] = $data;
+			}
+
+			foreach ($eventos as $key => $evento) {
+
+				$sql = "SELECT * FROM etapas WHERE id_evento = :id_evento AND id_trabalho = :id_trabalho";
+				$sql = $this->db->prepare($sql);
+				$sql->bindValue(':id_evento', $evento['id']);
+				$sql->bindValue(':id_trabalho', $id_trabalho);
+				$sql->execute();
+
+				if ($sql->rowCount() > 0) {
+					$etapa = $sql->fetch();
+
+					//Formatando data de envio e ultimaatualização
+
+					$data_envio = date_create($etapa['data_envio']); 
+					$ultima_atualizacao = date_create($etapa['ultima_atualizacao']); 
+
+					$data_envio = date_format($data_envio, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+					$ultima_atualizacao = date_format($ultima_atualizacao, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+					$etapa['data_envio'] = $data_envio;
+					$etapa['ultima_atualizacao'] = $ultima_atualizacao;
+
+					$eventos[$key]["etapa"] = $etapa;
+				} else {
+					$eventos[$key]["etapa"] = array();
+				}
+			}
+
+			/*echo "<pre>";
+			print_r($eventos);
+			echo "</pre>";*/
+
+			return $eventos;
+		}
+
 		function cadastrarCronograma($eventos, $datas){
 
 			$cronograma = array();

@@ -23,7 +23,7 @@
 				<h5>Orientador: <a href="<?php echo BASE_URL; ?>orientadores/orientacoes/<?php echo $trabalho['id_orientador']; ?>"><?php echo $trabalho['orientador']; ?></a></h5>
 
 				<hr>
-				<a href="<?php echo BASE_URL; ?>trabalhos/etapas/" class="btn btn-primary">Visualizar etapas</a>
+				<a href="<?php echo BASE_URL; ?>trabalhos/etapas/<?php echo $trabalho['id']; ?>" class="btn btn-primary">Visualizar etapas</a>
 			</div>
 
 		</div>

@@ -43,6 +43,19 @@
 			}
 		}
 
+		function checkAluno($id){
+			$sql = "SELECT * FROM grupos WHERE id_aluno = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id', $id);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		function cadastrarTrabalho($id_tema, $titulo, $id_orientador, $autores){
 
 
@@ -130,14 +143,25 @@
 			}
 		}
 
-		function getEtapa($id_etapa){
-			$sql = "SELECT evento FROM cronograma WHERE id = $id_etapa";
+		function getEvento($id_evento){ //Retorna o nome do evento da tabela cronograma
+			$sql = "SELECT evento FROM cronograma WHERE id = $id_evento";
 			$sql = $this->db->query($sql);
 			$sql->execute();
 
 			$sql = $sql->fetch();
 
-			$etapa = $sql['evento'];
+			$evento = $sql['evento'];
+
+			return $evento;
+		}
+
+		function getEtapa($id_etapa){
+
+			$sql = "SELECT id_evento, url FROM etapas WHERE id = $id_etapa";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$etapa = $sql->fetch();
 
 			return $etapa;
 		}
@@ -151,8 +175,14 @@
 
 			$eventos = $sql->fetchAll();
 
+			foreach($eventos as $key => $evento){ //Percorrendo os eventos e formatando as datas
+				$data = date_create($evento['data']); 
+				$data = date_format($data, 'd/m/Y');
+
+				$eventos[$key]['data'] = $data;
+			}
+
 			foreach ($eventos as $key => $evento) {
-				
 
 				$sql = "SELECT * FROM etapas WHERE id_evento = :id_evento AND id_trabalho = :id_trabalho";
 				$sql = $this->db->prepare($sql);
@@ -162,6 +192,17 @@
 
 				if ($sql->rowCount() > 0) {
 					$etapa = $sql->fetch();
+
+					//Formatando data de envio e ultimaatualização
+
+					$data_envio = date_create($etapa['data_envio']); 
+					$ultima_atualizacao = date_create($etapa['ultima_atualizacao']); 
+
+					$data_envio = date_format($data_envio, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+					$ultima_atualizacao = date_format($ultima_atualizacao, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+					$etapa['data_envio'] = $data_envio;
+					$etapa['ultima_atualizacao'] = $ultima_atualizacao;
 
 					$eventos[$key]["etapa"] = $etapa;
 				} else {
@@ -177,12 +218,27 @@
 		}
 
 		function cadastrarEtapa($id_trabalho, $id_evento, $url){
+			
 
-			$sql = 	"INSERT INTO etapas SET id_trabalho = :id_trabalho, id_evento = :id_evento, url = :url";
+			$sql = 	"INSERT INTO etapas SET id_trabalho = :id_trabalho, id_evento = :id_evento, data_envio = NOW(), ultima_atualizacao = NOW(), url = :url";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id_trabalho', $id_trabalho);
 			$sql->bindValue(':id_evento', $id_evento);
 			$sql->bindValue(':url', $url);
+			$sql->execute();
+
+		}
+
+		function atualizarEtapa($trabalho, $url_antiga, $id_etapa){
+			$nova_url = md5(time().rand(0, 9999)).'.pdf'; //Atribuindo nome aleatório para a url
+
+			unlink('../trabalhos/'.$url_antiga); //Deleta o arquivo antigo
+			move_uploaded_file($trabalho['tmp_name'], '../trabalhos/'.$nova_url); //Adiciona o novo arquivo
+
+			$sql = "UPDATE etapas SET ultima_atualizacao = NOW(), url = :url WHERE id = :id_etapa"; //Atualiza a tabela etapas com a nova url
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':url', $nova_url);
+			$sql->bindValue(':id_etapa', $id_etapa);
 			$sql->execute();
 
 		}

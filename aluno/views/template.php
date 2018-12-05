@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo BASE_URL; ?>etapas/index/">Etapas</a>
+                    <a href="<?php echo BASE_URL; ?>etapas/">Etapas</a>
                 </li>
                 <li>
                     <a href="<?php echo BASE_URL; ?>orientacoes">Orientações</a>
@@ -47,7 +47,7 @@
 
 			<div class="separator"></div>
 
-			<div class="navbar-brand">Aluno</div>
+			<div class="navbar-brand"><?php if(isset($_SESSION['nome'])) {echo $_SESSION['nome'];} ?></div>
 
 			<div class="navbar-nav ml-auto">
 

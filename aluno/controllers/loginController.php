@@ -5,8 +5,14 @@
 		public function index(){
 			$status['status'] = 0;
 
+			$a = new Alunos();
+
 			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
-				header('Location: '.BASE_URL.'etapas/index/'.$_SESSION['cLogin']);
+				if ($a->checkAluno($_SESSION['cLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
+					header('Location: '.BASE_URL.'etapas/');
+				} else {
+					header('Location: '.BASE_URL.'cadastrarTrabalho');
+				}
 			} else {
 				$this->loadTemplate('login', $status);
 			}
@@ -30,7 +36,11 @@
 					$senha = $_POST['senha'];
 
 					if ($aluno->login($ra, $senha)) { //Verifica o login
-						header('Location: '.BASE_URL.'etapas/index/'.$_SESSION['cLogin']);
+						if ($aluno->checkAluno($_SESSION['cLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
+							header('Location: '.BASE_URL.'etapas/');
+						} else {
+							header('Location: '.BASE_URL.'cadastrarTrabalho');
+						}
 					} else {
 						$status['status'] = 2;
 

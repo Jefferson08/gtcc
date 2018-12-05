@@ -6,7 +6,7 @@
 			$status['status'] = 0;
 
 			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
-				header("Location: ".BASE_URL);
+				header('Location: '.BASE_URL.'trabalhos');
 			} else {
 				$this->loadTemplate('login', $status);
 			}
@@ -30,7 +30,7 @@
 					$senha = $_POST['senha'];
 
 					if ($user->login($email, $senha)) { //Verifica o login
-						header("Location: ".BASE_URL);
+						header('Location: '.BASE_URL.'trabalhos');
 					} else {
 						$status['status'] = 2;
 

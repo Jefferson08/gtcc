@@ -1,7 +1,7 @@
 
 <div class="container">
 	
-	<h1>Enviar etapa</h1>
+	<h1>Atualizar etapa</h1>
 	<hr>
 
 	<?php 
@@ -23,7 +23,7 @@
 	<h4>Arquivo: (apenas formato .pdf)</h4>
 	<hr>
 
-	<form method="POST" enctype="multipart/form-data" action="<?php echo BASE_URL; ?>etapas/enviarEtapa/<?php echo $id_evento; ?>">
+	<form method="POST" enctype="multipart/form-data" action="<?php echo BASE_URL; ?>etapas/atualizarEtapa/<?php echo $id_etapa; ?>">
 		
 		<div class="form-group">
 			<input type="file" name="trabalho">

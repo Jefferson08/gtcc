@@ -40,7 +40,7 @@
 					</div>
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $evento['evento']; ?></h5><hr>
-						<a href="<?php echo BASE_URL; ?>etapas/visualizar/<?php echo $evento['etapa']['url']; ?>" class="btn btn-secondary">Visualizar</a>
+						<a href="../../../trabalhos/<?php echo $evento['etapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
 						<a href="<?php echo BASE_URL; ?>etapas/atualizar/<?php echo $evento['etapa']['id']; ?>" class="btn btn-success">Atualizar</a>
 					</div>
 

@@ -81,42 +81,47 @@ function excluirTema(id, botao){
 function excluirOrientador(id, botao){
 	event.preventDefault();
 
-	tr = $(botao).closest('tr');
+	var r = confirm("Tem certeza que deseja excluir este orientador ?");
+    if (r == true) {
+        tr = $(botao).closest('tr');
 
-	$.ajax({
-		url:'http://projeto.pc/coordenador/ajax/excluirOrientador/',
-		type:'POST',
-		data:{id_orientador:id},
-		dataType:'json',
-		complete:function(){
+		$.ajax({
+			url:'http://projeto.pc/coordenador/ajax/excluirOrientador/',
+			type:'POST',
+			data:{id_orientador:id},
+			dataType:'json',
+			complete:function(){
 
-			alert("Excluiu Orientador !!!");
-			tr.remove();
+				alert("Orientador excluído !!!");
+				tr.remove();
+				
+			}
 			
-		}
-		
-	});
-
+		});
+    }
 }
 
 function excluirEvento(id, botao){
 	event.preventDefault();
 
-	tr = $(botao).closest('tr');
+	var r = confirm("Tem certeza que deseja excluir este evento ?");
+    if (r == true) {
+        tr = $(botao).closest('tr');
 
-	$.ajax({
-		url:'http://projeto.pc/coordenador/ajax/excluirEvento/',
-		type:'POST',
-		data:{id_evento:id},
-		dataType:'json',
-		complete:function(){
+		$.ajax({
+			url:'http://projeto.pc/coordenador/ajax/excluirEvento/',
+			type:'POST',
+			data:{id_evento:id},
+			dataType:'json',
+			complete:function(){
 
-			alert("Excluiu Evento !!!");
-			tr.remove();
+				alert("Evento excluído !!!");
+				tr.remove();
+				
+			}
 			
-		}
-		
-	});
+		});
+    } 
 }
 
 remove = function(item){
