@@ -57,7 +57,7 @@
 						
 								$o->cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material);
 
-								//header('Location: '.BASE_URL.'materiais');
+								header('Location: '.BASE_URL.'materiais');
 
 							} else {
 								$dados['status'] = 3;
