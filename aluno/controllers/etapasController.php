@@ -4,10 +4,10 @@
 		public function index($id_aluno = array()){
 			$a = new Alunos();
 
-			if (isset($_SESSION['cLogin'])) {
-				$id_aluno = $_SESSION['cLogin'];
+			if (isset($_SESSION['aLogin'])) {
+				$id_aluno = $_SESSION['aLogin'];
 
-				if ($a->checkAluno($_SESSION['cLogin'])) {
+				if ($a->checkAluno($_SESSION['aLogin'])) {
 					$dados = array();
 
 					$id_trabalho = $a->getIdTrabalho($id_aluno);
@@ -43,7 +43,7 @@
 
 			$a = new Alunos();
 
-			$id_trabalho = $a->getIdTrabalho($_SESSION['cLogin']);
+			$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
 			 
 			$dados['evento'] = $a->getEvento($id_evento);
 			$dados['id_evento'] = $id_evento;
@@ -99,7 +99,7 @@
 
 			$a = new Alunos();
 
-			$id_trabalho = $a->getIdTrabalho($_SESSION['cLogin']);
+			$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
 			
 			$etapa = $a->getEtapa($id_etapa);
 

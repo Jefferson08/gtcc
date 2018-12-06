@@ -3,18 +3,30 @@
 	<div class="row">
 		
 		<div class="col-sm-12">
-    		<h3>Cadastrar Integrantes da Banca Avaliadora</h3>
+    		<h3>Cadastrar Integrantes da Banca Avaliadora:</h3>
 			<hr>
 
-    		<form method="POST">
+			<?php 
+				if ($status == 1) {
+					?>
+						<div class="alert alert-warning">Preencha os campos!!!</div>
+					<?php
+				} else if($status == 2){
+					?>
+						<div class="alert alert-success">Cadastrado com sucesso!!!</div>
+					<?php
+				}
+			 ?>
+
+    		<form method="POST" action="<?php echo BASE_URL; ?>banca/cadastrar/">
 				<div class="form-group">
 					<label for="nome" class="h4">Nome:</label>
-					<input id="nome" type="text" name="nome" class="form-control" placeholder="Orientador 1">
+					<input id="nome" type="text" name="nome" class="form-control">
 				</div>
 
 				<div class="form-group">
-					<label for="senha" class="h4">Email:</label>
-					<input id="email" type="email" name="email" class="form-control" placeholder="orientador@teste.com">
+					<label for="email" class="h4">Email:</label>
+					<input id="email" type="email" name="email" class="form-control">
 				</div>
 
 				<div class="form-group">
@@ -34,33 +46,26 @@
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
 						<th>Email</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Fulano</td>
-						<td>teste@teste.com.br</td>
-					</tr>
+					
+					<?php foreach ($banca as $avaliador): ?>
 
-					<tr>
-						<th scope="row">2</th>
-						<td>Ciclano</td>
-						<td>teste@teste.com.br</td>
-					</tr>
+						<tr>
+							<th scope="row"><?php echo $avaliador['id']; ?></th>
+							<td><?php echo $avaliador['nome']; ?></td>
+							<td><?php echo $avaliador['email']; ?></td>
+							<td>
+								<button class="btn btn-danger" onclick="excluirAvaliador(<?php echo $avaliador['id']; ?>, this);">Excluir</button>
+							</td>
+						</tr>
 
-					<tr>
-						<th scope="row">3</th>
-						<td>Beltrano</td>
-						<td>teste@teste.com.br</td>
-					</tr>
+					<?php endforeach ?>
 
-					<tr>
-						<th scope="row">4</th>
-						<td>Rodinei</td>
-						<td>teste@teste.com.br</td>
-					</tr>
+					
 				</tbody>	
 			</table>
 

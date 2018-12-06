@@ -34,6 +34,20 @@
 			}
 		}
 
+		public function excluirAvaliador(){
+
+			if (isset($_POST['id_avaliador']) && !empty($_POST['id_avaliador'])) {
+				
+				$id = $_POST['id_avaliador'];
+
+				$o = new Orientadores();
+
+				$o->excluirAvaliador($id);
+
+				exit;
+			}
+		}
+
 		public function excluirEvento(){
 
 			if (isset($_POST['id_evento']) && !empty($_POST['id_evento'])) {

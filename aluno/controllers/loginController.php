@@ -7,8 +7,8 @@
 
 			$a = new Alunos();
 
-			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
-				if ($a->checkAluno($_SESSION['cLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
+			if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
+				if ($a->checkAluno($_SESSION['aLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
 					header('Location: '.BASE_URL.'etapas/');
 				} else {
 					header('Location: '.BASE_URL.'cadastrarTrabalho');
@@ -36,7 +36,7 @@
 					$senha = $_POST['senha'];
 
 					if ($aluno->login($ra, $senha)) { //Verifica o login
-						if ($aluno->checkAluno($_SESSION['cLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
+						if ($aluno->checkAluno($_SESSION['aLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
 							header('Location: '.BASE_URL.'etapas/');
 						} else {
 							header('Location: '.BASE_URL.'cadastrarTrabalho');

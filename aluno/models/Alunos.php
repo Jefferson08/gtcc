@@ -13,8 +13,8 @@
 			$sql->execute();
 			if ($sql->rowCount() > 0) {
 				$dado = $sql->fetch();
-				$_SESSION['cLogin'] = $dado['id'];
-				$_SESSION['nome'] = $dado['nome'];
+				$_SESSION['aLogin'] = $dado['id'];
+				$_SESSION['aNome'] = $dado['nome'];
 				return true;
 			} else {
 				return false;

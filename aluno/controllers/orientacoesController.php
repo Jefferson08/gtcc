@@ -3,7 +3,7 @@
 
 		public function index(){
 
-			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
+			if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
 				$this->loadTemplate('orientacoes');
 			} else {
 				header('Location: '.BASE_URL.'login');

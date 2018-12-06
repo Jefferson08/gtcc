@@ -7,7 +7,7 @@
 
 			$a = new Alunos();
 
-			$dados['aluno'] = array("id" => $_SESSION['cLogin'], "nome" => $_SESSION['nome']); 
+			$dados['aluno'] = array("id" => $_SESSION['aLogin'], "nome" => $_SESSION['aNome']); 
 			$dados['temas'] = $a->getTemas();
 			$dados['orientadores'] = $a->getOrientadores();
 			$dados['qtdMax'] = $a->getQtdMax();
@@ -29,7 +29,7 @@
 
 			$a = new Alunos();
 
-			$dados['aluno'] = array("id" => $_SESSION['cLogin'], "nome" => $_SESSION['nome']); 
+			$dados['aluno'] = array("id" => $_SESSION['aLogin'], "nome" => $_SESSION['aNome']); 
 			$dados['temas'] = $a->getTemas();
 			$dados['orientadores'] = $a->getOrientadores();
 			$dados['qtdMax'] = $a->getQtdMax();

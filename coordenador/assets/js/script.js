@@ -101,6 +101,29 @@ function excluirOrientador(id, botao){
     }
 }
 
+function excluirAvaliador(id, botao){
+	event.preventDefault();
+
+	var r = confirm("Tem certeza que deseja excluir este avaliador?");
+    if (r == true) {
+        tr = $(botao).closest('tr');
+
+		$.ajax({
+			url:'http://projeto.pc/coordenador/ajax/excluirAvaliador/',
+			type:'POST',
+			data:{id_avaliador:id},
+			dataType:'json',
+			complete:function(){
+
+				alert("Avaliador excluído !!!");
+				tr.remove();
+				
+			}
+			
+		});
+    }
+}
+
 function excluirEvento(id, botao){
 	event.preventDefault();
 

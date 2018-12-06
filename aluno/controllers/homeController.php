@@ -5,7 +5,7 @@
 
 			echo "Index";
 
-			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
+			if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
 				header('Location: '.BASE_URL.'etapas');
 			} else {
 				header('Location: '.BASE_URL.'login');

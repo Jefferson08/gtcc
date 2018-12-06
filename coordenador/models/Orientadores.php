@@ -15,6 +15,20 @@
 			return $orientadores;
 		}
 
+		function getBanca(){
+			$banca = array();
+
+			$sql = "SELECT id, nome, email FROM banca";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$banca = $sql->fetchAll();
+			}
+
+			return $banca;
+		}
+
 		function cadastrarOrientador($nome, $email, $senha){
 
 			$sql = "INSERT INTO orientadores SET nome = :nome, email = :email, senha = :senha";
@@ -25,8 +39,25 @@
 			$sql->execute();
 		}
 
+		function cadastrarAvaliador($nome, $email, $senha){
+
+			$sql = "INSERT INTO banca SET nome = :nome, email = :email, senha = :senha";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':nome', $nome);
+			$sql->bindValue(':email', $email);
+			$sql->bindValue(':senha', $senha);
+			$sql->execute();
+		}
+
 		function excluirOrientador($id){
 			$sql = "DELETE FROM orientadores WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id', $id);
+			$sql->execute();
+		}
+
+		function excluirAvaliador($id){
+			$sql = "DELETE FROM banca WHERE id = :id";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id', $id);
 			$sql->execute();

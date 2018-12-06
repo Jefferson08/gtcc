@@ -4,7 +4,8 @@
 
 		public function index(){
 
-			session_unset($_SESSION['cLogin']);
+			$_SESSION['aLogin'] = "";
+			$_SESSION['aNome'] = "";
 			header("Location: ".BASE_URL);
 
 		}

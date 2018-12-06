@@ -19,7 +19,7 @@
 
 				if (!empty($dados)) {
 					
-					if ($dados['id'] == $_SESSION['cLogin']) { //Se ele estiver colocando o próprio RA
+					if ($dados['id'] == $_SESSION['aLogin']) { //Se ele estiver colocando o próprio RA
 
 						$dados = array(); //Retorna $dados como um array vazio e exibe o erro aluno não encontrado
 
