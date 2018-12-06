@@ -49,7 +49,7 @@
 
 			<div class="separator"></div>
 
-			<div class="navbar-brand"><?php if(isset($_SESSION['nome'])) {echo $_SESSION['nome'];} ?></div>
+			<div class="navbar-brand"><?php if(isset($_SESSION['cNome'])) {echo $_SESSION['cNome'];} ?></div>
 
 			<div class="navbar-nav ml-auto">
 					

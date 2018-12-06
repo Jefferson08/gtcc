@@ -217,8 +217,10 @@
 			return $eventos;
 		}
 
-		function cadastrarEtapa($id_trabalho, $id_evento, $url){
+		function cadastrarEtapa($id_trabalho, $id_evento, $trabalho){
 			
+			$url = md5(time().rand(0, 9999)).'.pdf';
+			move_uploaded_file($trabalho['tmp_name'], '../trabalhos/'.$url);
 
 			$sql = 	"INSERT INTO etapas SET id_trabalho = :id_trabalho, id_evento = :id_evento, data_envio = NOW(), ultima_atualizacao = NOW(), url = :url";
 			$sql = $this->db->prepare($sql);

@@ -5,8 +5,8 @@
 
 			$o = new Orientadores();
 
-			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
-				$id_orientador = $_SESSION['cLogin'];
+			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
+				$id_orientador = $_SESSION['oLogin'];
 				
 				$dados = array();
 

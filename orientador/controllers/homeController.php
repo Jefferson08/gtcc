@@ -4,7 +4,7 @@
 		public function index(){
 
 
-			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) {
+			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
 				header('Location: '.BASE_URL);
 			
 			} else {

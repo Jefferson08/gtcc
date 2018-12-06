@@ -44,7 +44,7 @@
 
 			<div class="separator"></div>
 
-			<div class="navbar-brand"><?php if(isset($_SESSION['nome'])) {echo $_SESSION['nome'];} ?></div>
+			<div class="navbar-brand"><?php if(isset($_SESSION['oNome'])) {echo $_SESSION['oNome'];} ?></div>
 
 			<div class="navbar-nav ml-auto">
 
