@@ -13,41 +13,24 @@
 
 	<hr>
 
-	<div class="card">
-		<div class="card-header">
-			<h5>Trabalho: Sistema de gerenciamento inteligente</h5>
-		</div>
-		<div class="card-body">
-			
-			<h5 class="card-title">Resumo e introdução</h5><hr>
-			<p class="card-text">Orientações realizadas sobre o conteúdo e estrutura do resumo e algumas correções na introdução.</p>
-	
-		</div>
+	<?php foreach($orientacoes as $orientacao): ?>
+		<div class="card">
+			<div class="card-header">
+				<h5>Trabalho: <?php echo $orientacao['titulo_trabalho']; ?></h5>
+			</div>
+			<div class="card-body">
+				
+				<h5 class="card-title"><?php echo $orientacao['titulo']; ?></h5><hr>
+				<p class="card-text"><?php echo $orientacao['descricao']; ?></p>
+		
+			</div>
 
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
+			<div class="card-footer text-muted">
+			    Realizada em: <?php echo $orientacao['data']; ?>
+			</div>
 		</div>
-	</div>
-
-	<hr>
-	
-	<div class="card">
-		<div class="card-header">
-			<h5>Trabalho: Algoritmo autônomo com redes neurais</h5>
-		</div>
-		<div class="card-body">
-			
-			<h5 class="card-title">Citações e referências</h5><hr>
-			<p class="card-text">Os alunos foram orientados a como fazer citações da maneira correta, e algumas correções foram feitas.</p>
-	
-		</div>
-
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
-		</div>
-	</div>
 
 	<hr>
-
+	<?php endforeach; ?>
 	
 </div>

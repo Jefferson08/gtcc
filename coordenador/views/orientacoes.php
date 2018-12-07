@@ -1,45 +1,34 @@
 
 <div class="container">
 
-	<h1>Orientações realizadas por Orientador 1</h1>
+	<h1>Orientações realizadas por <?php echo $nome_orientador; ?> </h1>
 
 	<hr>
 
-	<div class="card">
-		<div class="card-header">
-			<h5>Trabalho: Sistema de gerenciamento inteligente</h5>
-		</div>
-		<div class="card-body">
+	<?php if (!empty($orientacoes)) {
+		foreach($orientacoes as $orientacao): ?>
+			<div class="card">
+				<div class="card-header">
+					<h5>Trabalho: <?php echo $orientacao['titulo_trabalho']; ?></h5>
+				</div>
+				<div class="card-body">
+					
+					<h5 class="card-title"><?php echo $orientacao['titulo']; ?></h5><hr>
+					<p class="card-text"><?php echo $orientacao['descricao']; ?></p>
 			
-			<h5 class="card-title">Resumo e introdução</h5><hr>
-			<p class="card-text">Orientações realizadas sobre o conteúdo e estrutura do resumo e algumas correções na introdução.</p>
-	
-		</div>
+				</div>
 
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
-		</div>
-	</div>
+				<div class="card-footer text-muted">
+				    Realizada em: <?php echo $orientacao['data']; ?>
+				</div>
+			</div>
 
-	<hr>
-	
-	<div class="card">
-		<div class="card-header">
-			<h5>Trabalho: Algoritmo autônomo com redes neurais</h5>
-		</div>
-		<div class="card-body">
-			
-			<h5 class="card-title">Citações e referências</h5><hr>
-			<p class="card-text">Os alunos foram orientados a como fazer citações da maneira correta, e algumas correções foram feitas.</p>
-	
-		</div>
-
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
-		</div>
-	</div>
-
-	<hr>
-
+			<hr>
+		<?php endforeach;
+	} else {
+		?>
+			<div class="alert alert-warning"><?php echo $nome_orientador; ?> ainda não realizou nenhuma orientação!!!</div>
+		<?php
+	} ?>
 	
 </div>

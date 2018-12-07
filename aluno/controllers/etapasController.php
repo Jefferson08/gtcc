@@ -58,11 +58,9 @@
 					$trabalho = $_FILES['trabalho'];
 
 					if (in_array($trabalho['type'], array('application/pdf'))) { //Verifica se o arquivo é um pdf
-						
-						$url = md5(time().rand(0, 9999)).'.pdf';
-						move_uploaded_file($trabalho['tmp_name'], '../trabalhos/'.$url);
+				
 
-						$a->cadastrarEtapa($id_trabalho, $id_evento, $url);
+						$a->cadastrarEtapa($id_trabalho, $id_evento, $trabalho);
 
 						header('Location: '.BASE_URL.'etapas/index/');
 

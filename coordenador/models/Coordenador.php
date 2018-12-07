@@ -184,6 +184,43 @@
 			return $eventos;
 		}
 
+		function getOrientador($id_orientador){
+
+			$sql = "SELECT nome FROM orientadores WHERE id = $id_orientador";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$nome_orientador = $sql['nome'];
+
+			return $nome_orientador;
+		}
+
+		function getOrientacoes($id_orientador){
+			$orientacoes = array();
+
+			$sql = "SELECT orientacoes.titulo, orientacoes.descricao, orientacoes.data, trabalhos.titulo AS titulo_trabalho from orientacoes, trabalhos where trabalhos.id = orientacoes.id_trabalho AND orientacoes.id_orientador = $id_orientador ORDER BY orientacoes.data DESC";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$orientacoes = $sql->fetchAll();
+
+				foreach ($orientacoes as $key => $orientacao) {
+					$data = date_create($orientacao['data']); 
+					$data = date_format($data, 'd/m/Y');
+
+					$orientacoes[$key]["data"] = $data;
+				}
+
+				return $orientacoes;
+			} else {
+
+				return $orientacoes;
+			}
+		}
+
 		function cadastrarCronograma($eventos, $datas){
 
 			$cronograma = array();

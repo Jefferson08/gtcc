@@ -135,12 +135,26 @@
 
 		}
 
+		function cadastrarOrientacao($id_trabalho, $titulo, $descricao){
+			
+			$id_orientador = $_SESSION['oLogin'];
+
+			$sql = "INSERT INTO orientacoes SET id_trabalho = :id_trabalho, id_orientador = :id_orientador, titulo = :titulo, descricao = :descricao, data = NOW()";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':id_orientador', $id_orientador);
+			$sql->bindValue(':titulo', $titulo);
+			$sql->bindValue(':descricao', $descricao);
+			$sql->execute();
+
+		}
+
 		function getMateriais(){
 			$materiais = array();
 
 			$id_orientador = $_SESSION['oLogin'];
 
-			$sql = "SELECT materiais.titulo, materiais.descricao, materiais.link, materiais.url, materiais.data_envio, trabalhos.titulo AS titulo_trabalho from materiais, trabalhos where trabalhos.id = materiais.id_trabalho AND materiais.id_orientador = $id_orientador";
+			$sql = "SELECT materiais.titulo, materiais.descricao, materiais.link, materiais.url, materiais.data_envio, trabalhos.titulo AS titulo_trabalho from materiais, trabalhos where trabalhos.id = materiais.id_trabalho AND materiais.id_orientador = $id_orientador ORDER BY data_envio DESC";
 			$sql = $this->db->query($sql);
 			$sql->execute();
 
@@ -158,6 +172,32 @@
 			} else {
 
 				return $materiais;
+			}
+		}
+
+		function getOrientacoes(){
+			$orientacoes = array();
+
+			$id_orientador = $_SESSION['oLogin'];
+
+			$sql = "SELECT orientacoes.titulo, orientacoes.descricao, orientacoes.data, trabalhos.titulo AS titulo_trabalho from orientacoes, trabalhos where trabalhos.id = orientacoes.id_trabalho AND orientacoes.id_orientador = $id_orientador ORDER BY orientacoes.data DESC";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$orientacoes = $sql->fetchAll();
+
+				foreach ($orientacoes as $key => $orientacao) {
+					$data = date_create($orientacao['data']); 
+					$data = date_format($data, 'd/m/Y');
+
+					$orientacoes[$key]["data"] = $data;
+				}
+
+				return $orientacoes;
+			} else {
+
+				return $orientacoes;
 			}
 		}
 

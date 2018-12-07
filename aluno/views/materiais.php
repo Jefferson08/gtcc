@@ -2,39 +2,37 @@
 <div class="container">
 
 	<h1>Materiais</h1>
+
 	<hr>
 	
-	<div class="card">
-		<div class="card-header">
-			10/10/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Livro arquitetura de software</h5><hr>
-			<p class="card-text">O capítulo 3 apresenta alguns pontos interessantes que podem auxiliar no desenvolvimento do trabalho</p>
-			<a href="#" class="btn btn-secondary">Visualizar</a>
-			<a href="#" class="btn btn-primary">Download</a>
+	<?php foreach($materiais as $material): ?>
+		<div class="card">
+			
+			<div class="card-body">
+				
+				<h5 class="card-title"><?php echo $material['titulo']; ?></h5><hr>
+				<p class="card-text"><?php echo $material['descricao']; ?></p><hr>
+
+				<?php if (!empty($material['link'])) {
+					?>
+						<a href="<?php echo $material['link']; ?>" target="_blank">Clique para acessar o link</a><hr>
+					<?php
+				} ?>
+
+				<?php if (!empty($material['url'])) {
+					?>
+						<a href="../../../materiais/<?php echo $material['url']; ?>" target="_blank" class="btn btn-secondary">Ver arquivo</a>
+					<?php
+				} ?>
+			</div>
+
+			<div class="card-footer text-muted">
+			    Postado em <?php echo $material['data_envio']; ?>
+			</div>
 		</div>
 
-		<div class="card-footer text-muted">
-		    Postado às 13:00:32s
-		</div>
-	</div>
+		<hr>
+	<?php endforeach; ?>
 
-	<hr>
-
-	<div class="card">
-		<div class="card-header">
-			14/10/2018
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Artigo Alan Turing</h5><hr>
-			<p class="card-text">Artigo de Alan turin sobre a máquina de estados</p>
-
-			<a href="https://www.google.com.br">link para o artigo</a>
-		</div>
-
-		<div class="card-footer text-muted">
-		    Postado às 13:00:32s
-		</div>
-	</div>
+	
 </div>

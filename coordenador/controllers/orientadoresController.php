@@ -14,9 +14,20 @@
 
 		}
 
-		public function orientacoes(){
+		public function orientacoes($id_orientador = array()){
 
-			$this->loadTemplate('orientacoes');
+			$dados = array();
+
+			$c = new Coordenador();
+
+			$dados['orientacoes'] = $c->getOrientacoes($id_orientador);
+
+			$dados['status'] = 0;
+
+			$dados['nome_orientador'] = $c->getOrientador($id_orientador);
+
+			$this->loadTemplate('orientacoes', $dados);
+
 		}
 
 		public function cadastrar(){

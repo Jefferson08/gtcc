@@ -5,37 +5,21 @@
 
 	<hr>
 
-	<div class="card">
-
-		<div class="card-body">
-			
-			<h5 class="card-title">Resumo e introdução</h5><hr>
-			<p class="card-text">Orientações realizadas sobre o conteúdo e estrutura do resumo e algumas correções na introdução.</p>
-	
-		</div>
-
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
-		</div>
-	</div>
-
-	<hr>
-	
-	<div class="card">
+	<?php foreach($orientacoes as $orientacao): ?>
+		<div class="card">
+			<div class="card-body">
+				
+				<h5 class="card-title"><?php echo $orientacao['titulo']; ?></h5><hr>
+				<p class="card-text"><?php echo $orientacao['descricao']; ?></p>
 		
-		<div class="card-body">
-			
-			<h5 class="card-title">Citações e referências</h5><hr>
-			<p class="card-text">Os alunos foram orientados a como fazer citações da maneira correta, e algumas correções foram feitas.</p>
-	
-		</div>
+			</div>
 
-		<div class="card-footer text-muted">
-		    Realizada em: 14/10/2018
+			<div class="card-footer text-muted">
+			    Realizada em: <?php echo $orientacao['data']; ?>
+			</div>
 		</div>
-	</div>
 
 	<hr>
-
+	<?php endforeach; ?>
 	
 </div>

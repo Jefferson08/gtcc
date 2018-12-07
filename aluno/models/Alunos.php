@@ -217,6 +217,58 @@
 			return $eventos;
 		}
 
+		function getOrientacoes(){
+			$orientacoes = array();
+
+			$id_trabalho = $this->getIdTrabalho($_SESSION['aLogin']);
+
+			$sql = "SELECT titulo, descricao, data FROM orientacoes WHERE id_trabalho = $id_trabalho ORDER BY data DESC";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$orientacoes = $sql->fetchAll();
+
+				foreach ($orientacoes as $key => $orientacao) {
+					$data = date_create($orientacao['data']); 
+					$data = date_format($data, 'd/m/Y');
+
+					$orientacoes[$key]["data"] = $data;
+				}
+
+				return $orientacoes;
+			} else {
+
+				return $orientacoes;
+			}
+		}
+
+		function getMateriais(){
+			$materiais = array();
+
+			$id_trabalho = $this->getIdTrabalho($_SESSION['aLogin']);
+
+			$sql = "SELECT titulo, descricao, link, url, data_envio FROM materiais WHERE id_trabalho = $id_trabalho ORDER BY data_envio DESC";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$materiais = $sql->fetchAll();
+
+				foreach ($materiais as $key => $material) {
+					$data = date_create($material['data_envio']); 
+					$data = date_format($data, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+					$materiais[$key]["data_envio"] = $data;
+				}
+
+				return $materiais;
+			} else {
+
+				return $materiais;
+			}
+		}
+
 		function cadastrarEtapa($id_trabalho, $id_evento, $trabalho){
 			
 			$url = md5(time().rand(0, 9999)).'.pdf';

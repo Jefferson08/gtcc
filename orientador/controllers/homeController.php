@@ -5,7 +5,7 @@
 
 
 			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
-				header('Location: '.BASE_URL);
+				header('Location: '.BASE_URL.'trabalhos');
 			
 			} else {
 				header('Location: '.BASE_URL.'login');
