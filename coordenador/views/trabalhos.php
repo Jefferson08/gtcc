@@ -24,6 +24,15 @@
 
 				<hr>
 				<a href="<?php echo BASE_URL; ?>trabalhos/etapas/<?php echo $trabalho['id']; ?>" class="btn btn-primary">Visualizar etapas</a>
+				<?php if ($trabalho['avaliado'] == true) {
+					?>
+						<button class="btn btn-success">Avaliado</button>
+					<?php
+				} elseif ($trabalho['finalizado'] == true) {
+					?>
+						<a href="<?php echo BASE_URL; ?>trabalhos/avaliarTrabalho/<?php echo $trabalho['id']; ?>" class="btn btn-outline-dark">Avaliar</a>
+					<?php
+				} ?>
 			</div>
 
 		</div>

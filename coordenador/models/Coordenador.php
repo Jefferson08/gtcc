@@ -108,6 +108,9 @@
 					$autores = $this->getAutores($trabalho['id']);
 					$trabalhos[$key]["autores"] = $autores;
 
+					$trabalhos[$key]["finalizado"] = $this->checkEtapa($trabalho['id']);
+					$trabalhos[$key]["avaliado"] = $this->checkAvaliacao($trabalho['id']);
+
 				}
 
 				return $trabalhos;
@@ -221,6 +224,19 @@
 			}
 		}
 
+		function getTitulo($id_trabalho){
+
+			$sql = "SELECT titulo FROM trabalhos WHERE id = $id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$titulo = $sql['titulo'];
+
+			return $titulo;
+		}
+
 		function cadastrarCronograma($eventos, $datas){
 
 			$cronograma = array();
@@ -261,6 +277,50 @@
 			$sql = "DELETE FROM cronograma WHERE id = :id";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id', $id);
+			$sql->execute();
+		}
+
+		function checkEtapa($id_trabalho){ //Verifica se a ultima etapa do trabalho foi enviada
+
+			$sql = "SELECT MAX(id) AS maxId FROM cronograma";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$maxId = $sql['maxId'];
+
+			$sql = "SELECT * FROM etapas WHERE id_trabalho = $id_trabalho AND id_evento = $maxId";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+		function checkAvaliacao($id_trabalho){
+
+			$sql = "SELECT * FROM notas_coordenador WHERE id_trabalho = $id_trabalho";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function avaliar($id_trabalho, $nota){
+
+			$sql = "INSERT INTO notas_coordenador SET id_trabalho = :id_trabalho, nota = :nota";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':nota', $nota);
 			$sql->execute();
 		}
 

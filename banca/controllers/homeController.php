@@ -1,18 +1,15 @@
 <?php 
-	class trabalhosController extends controller{
+	class homeController extends controller{
 
 		public function index(){
 
 			if (isset($_SESSION['bLogin']) && !empty($_SESSION['bLogin'])) {
-				$this->loadTemplate('trabalhos');
+				header('Location: '.BASE_URL.'trabalhos');
 			} else {
 				header('Location: '.BASE_URL.'login');
 			}
+
 		}
 
-		public function avaliar(){
-
-			$this->loadTemplate('avaliacao');
-		}
 	}
  ?>

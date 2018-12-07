@@ -1,7 +1,7 @@
 
 <?php 
 	
-	if (isset($_POST['eventos'])) {
+	if (isset($_POST['nota'])) {
 		print_r($_POST);
 	}
  ?>
