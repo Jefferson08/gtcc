@@ -8,7 +8,15 @@
 		</div>
 
 		<div class="card-body">
-			<h3>Nota: 1,9</h3>
+			<?php if (!empty($notas['nota_coordenador'])) {
+				?>
+					<h3>Nota: <?php echo $notas['nota_coordenador']; ?></h3>
+				<?php
+			} else {
+				?>
+					<div class="alert alert-warning">Ainda não avaliado!!!</div>
+				<?php
+			} ?>
 		</div>
 	</div>
 
@@ -20,8 +28,17 @@
 		</div>
 
 		<div class="card-body">
-			<h3>Nota: 1,8</h3>
+			<?php if (!empty($notas['nota_orientador'])) {
+				?>
+					<h3>Nota: <?php echo $notas['nota_orientador']; ?></h3>
+				<?php
+			} else {
+				?>
+					<div class="alert alert-warning">Ainda não avaliado!!!</div>
+				<?php
+			} ?>
 		</div>
+
 	</div>
 
 	<hr>
@@ -32,14 +49,20 @@
 		</div>
 
 		<div class="card-body">
-			<ul>
-				<li><h5>Avaliador 1 - Nota 1,8</h5></li>
-				<li><h5>Avaliador 2 - Nota 2,0</h5></li>
-				<li><h5>Avaliador 3 - Nota 1,4</h5></li>
-			</ul>
-			<hr>
-
-			<h5>Total Banca: 5,2</h5>
+			<?php if (!empty($notas['notas_banca'])) {
+				?>
+					<ul>
+						<?php foreach ($notas['notas_banca'] as $nota): ?>
+							<li><h5><?php echo $nota['nome_avaliador']; ?> - Nota <?php echo $nota['nota']; ?></h5></li>
+						<?php endforeach; ?>
+					</ul>
+					<hr>
+				<?php
+			} else {
+				?>
+					<div class="alert alert-warning">Ainda não avaliado!!!</div>
+				<?php
+			} ?>
 		</div>
 	</div>
 
@@ -47,11 +70,11 @@
 
 	<div class="card">
 		<div class="card-header">
-			Nota final:
+			Nota final: 
 		</div>
 
 		<div class="card-body">
-			<h5>8,9</h5>
+			<h5><?php echo $notas['total']; ?></h5>
 		</div>
 	</div>
 </div>

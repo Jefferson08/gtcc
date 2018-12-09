@@ -11,7 +11,7 @@
 				if ($a->checkAluno($_SESSION['aLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
 					header('Location: '.BASE_URL.'etapas/');
 				} else {
-					header('Location: '.BASE_URL.'cadastrarTrabalho');
+					header('Location: '.BASE_URL.'cadastrarTrabalho'); //Se não, redireciona para cadastrarTrabalho
 				}
 			} else {
 				$this->loadTemplate('login', $status);
@@ -25,7 +25,6 @@
 			//status 0 - Não exibe alert 
 			//status 1 - alert Preencha os campos email e senha
 			//status 2 - alert Email e/ou senha inválidos
-
 
 			$aluno = new Alunos();
 

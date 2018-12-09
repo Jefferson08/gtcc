@@ -30,9 +30,43 @@
 			$this->loadTemplate('etapas', $dados);
 		}
 
-		public function avaliar(){
+		public function avaliarTrabalho($id_trabalho = array()){
 
-			$this->loadTemplate('avaliacao');
+			$dados = array();
+
+			$o = new Orientadores();
+
+			if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+				header('Location: '.BASE_URL.'trabalhos');
+			} else {
+				$dados['avaliado'] = $o->checkAvaliacao($id_trabalho);
+
+				$dados['id_trabalho'] = $id_trabalho;
+
+				$dados['titulo_trabalho'] = $o->getTitulo($id_trabalho);
+
+				$this->loadTemplate('avaliacao', $dados);
+			}
+		}
+
+		public function enviar($id_trabalho = array()){
+
+			$o = new Orientadores();
+
+			if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+				header('Location: '.BASE_URL.'trabalhos');
+			} else {
+				if (isset($_POST['nota']) && !empty($_POST['nota'])) {
+				
+					$nota = $_POST['nota'];
+
+					echo "NOTA: ".$nota;
+					
+					$o->avaliar($id_trabalho, $nota);
+
+					header('Location: '.BASE_URL.'trabalhos');
+				}
+			}
 		}
 	}
  ?>

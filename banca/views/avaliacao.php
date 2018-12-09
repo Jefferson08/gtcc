@@ -4,34 +4,18 @@
 	<h1>Avaliação final</h1>
 	<hr>
 
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Título: Sistema de gerenciamento inteligente</h5><hr>
-			<h3>Autores:</h3>
-			<p class="card-text">
-				<ul>
-					<li>Aluno 1</li>
-					<li>Aluno 2</li>
-					<li>Aluno 3</li>
-				</ul>
-			</p>
-			<hr>
-			<a href="" class="btn btn-primary">Visualizar</a>
-			<a href="" class="btn btn-secondary">Download</a>
-
-		</div>
-
-	</div>
+	<h1><?php echo $titulo_trabalho; ?></h1>
 
 	<hr>
 
-	<div class="form-group">
+	<form method="POST" action="<?php echo BASE_URL; ?>trabalhos/enviar/<?php echo $id_trabalho; ?>">
+		<div class="form-group">
 		<h4>Atribua uma nota de 0 a 2 pontos:</h4>
 		<hr>
+			<input type="number" name="nota" min="0" max="2.00" step="0.10" class="form-control"><br>
+		</div>
 
-		<input type="text" name="nota" id="nota" class="form-control"><br>
-
-		<button class="btn btn-primary">Avaliar</button>
-	</div>
+		<input type="submit" value="Avaliar" class="btn btn-primary">
+	</form>
 
 </div>

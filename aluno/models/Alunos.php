@@ -182,7 +182,7 @@
 				$eventos[$key]['data'] = $data;
 			}
 
-			foreach ($eventos as $key => $evento) {
+			foreach ($eventos as $key => $evento) { 
 
 				$sql = "SELECT * FROM etapas WHERE id_evento = :id_evento AND id_trabalho = :id_trabalho";
 				$sql = $this->db->prepare($sql);
@@ -205,6 +205,9 @@
 					$etapa['ultima_atualizacao'] = $ultima_atualizacao;
 
 					$eventos[$key]["etapa"] = $etapa;
+
+					$eventos[$key]["comentarios"] = $this->getComentarios($id_trabalho, $evento['id']);
+
 				} else {
 					$eventos[$key]["etapa"] = array();
 				}
@@ -215,6 +218,34 @@
 			echo "</pre>";*/
 
 			return $eventos;
+		}
+
+		function getComentarios($id_trabalho, $id_etapa){
+			$comentarios = array();
+
+			$sql = "SELECT orientadores.nome, comentarios.comentario, comentarios.data_envio FROM orientadores, comentarios WHERE comentarios.id_trabalho = :id_trabalho AND comentarios.id_etapa = :id_etapa AND comentarios.id_orientador = orientadores.id ORDER BY comentarios.data_envio DESC";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':id_etapa', $id_etapa);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetchAll();
+				$comentarios = $sql;
+
+				foreach ($comentarios as $key => $comentario) { //Formatando a data de envio
+					
+					$data_envio = date_create($comentario['data_envio']); 
+					$data_envio = date_format($data_envio, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+					$comentarios[$key]['data_envio'] = $data_envio;
+				}
+
+				return $comentarios;
+			} else {
+				return $comentarios;
+			}
+
 		}
 
 		function getOrientacoes(){
@@ -295,6 +326,74 @@
 			$sql->bindValue(':id_etapa', $id_etapa);
 			$sql->execute();
 
+		}
+
+		function getNotas(){
+			$notas = array(
+				'nota_coordenador' => "",
+				'nota_orientador' => "",
+				'notas_banca' => array(),
+				'total' => 0
+			);
+
+			$id_trabalho = $this->getIdTrabalho($_SESSION['aLogin']);
+
+			$sql = "SELECT nota FROM notas_coordenador WHERE id_trabalho = :id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetch();
+				$notas['nota_coordenador'] = $sql['nota'];
+				$notas['total'] += $sql['nota'];				
+			}
+
+			$sql = "SELECT nota FROM notas_orientador WHERE id_trabalho = :id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetch();
+				$notas['nota_orientador'] = $sql['nota'];
+				$notas['total'] += $sql['nota'];
+			}
+
+			$sql = "SELECT id_avaliador, nota FROM notas_banca WHERE id_trabalho = :id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetchAll();
+
+				$notas_banca = $sql;
+
+				foreach ($notas_banca as $key => $nota) {
+					$notas_banca[$key]["nome_avaliador"] = $this->getNomeAvaliador($nota['id_avaliador']);
+					$notas['total'] += $nota['nota'];
+				}
+
+				foreach ($notas_banca as $key => $nota) {
+					array_push($notas['notas_banca'], $nota);
+				}
+			}
+
+			return $notas;
+		}
+
+		function getNomeAvaliador($id_avaliador){
+
+			$sql = "SELECT nome FROM banca WHERE id = $id_avaliador";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$nome_avaliador = $sql['nome'];
+
+			return $nome_avaliador;
 		}
 
 	}

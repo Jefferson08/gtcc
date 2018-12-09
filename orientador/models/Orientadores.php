@@ -38,6 +38,9 @@
 					$autores = $this->getAutores($trabalho['id']);
 					$trabalhos[$key]["autores"] = $autores;
 
+					$trabalhos[$key]["finalizado"] = $this->checkEtapa($trabalho['id']);
+					$trabalhos[$key]["avaliado"] = $this->checkAvaliacao($trabalho['id']);
+
 				}
 
 				return $trabalhos;
@@ -59,6 +62,19 @@
 
 			return $autores;
 
+		}
+
+		function getTitulo($id_trabalho){
+
+			$sql = "SELECT titulo FROM trabalhos WHERE id = $id_trabalho";
+			$sql = $this->db->prepare($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$titulo = $sql['titulo'];
+
+			return $titulo;
 		}
 
 		function getEtapas($id_trabalho){
@@ -100,12 +116,41 @@
 					$etapa['ultima_atualizacao'] = $ultima_atualizacao;
 
 					$eventos[$key]["etapa"] = $etapa;
+
+					$eventos[$key]["comentarios"] = $this->getComentarios($id_trabalho, $evento['id']);
 				} else {
 					$eventos[$key]["etapa"] = array();
 				}
 			}
 
 			return $eventos;
+		}
+
+		function getComentarios($id_trabalho, $id_etapa){
+			$comentarios = array();
+
+			$sql = "SELECT orientadores.nome, comentarios.comentario, comentarios.data_envio FROM orientadores, comentarios WHERE comentarios.id_trabalho = :id_trabalho AND comentarios.id_etapa = :id_etapa AND comentarios.id_orientador = orientadores.id ORDER BY comentarios.data_envio DESC";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':id_etapa', $id_etapa);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$sql = $sql->fetchAll();
+				$comentarios = $sql;
+
+				foreach ($comentarios as $key => $comentario) { //Formatando a data de envio
+					
+					$data_envio = date_create($comentario['data_envio']); 
+					$data_envio = date_format($data_envio, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+					$comentarios[$key]['data_envio'] = $data_envio;
+				}
+
+				return $comentarios;
+			} else {
+				return $comentarios;
+			}
 		}
 
 		function cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material){
@@ -199,6 +244,50 @@
 
 				return $orientacoes;
 			}
+		}
+
+		function checkEtapa($id_trabalho){ //Verifica se a ultima etapa do trabalho foi enviada
+
+			$sql = "SELECT MAX(id) AS maxId FROM cronograma";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			$maxId = $sql['maxId'];
+
+			$sql = "SELECT * FROM etapas WHERE id_trabalho = $id_trabalho AND id_evento = $maxId";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+		function checkAvaliacao($id_trabalho){
+
+			$sql = "SELECT * FROM notas_orientador WHERE id_trabalho = $id_trabalho";
+			$sql = $this->db->query($sql);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function avaliar($id_trabalho, $nota){
+
+			$sql = "INSERT INTO notas_orientador SET id_trabalho = :id_trabalho, nota = :nota";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':nota', $nota);
+			$sql->execute();
 		}
 
 	}

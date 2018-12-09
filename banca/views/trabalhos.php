@@ -3,58 +3,43 @@
 	<h1>Trabalhos</h1>
 	<hr>
 	
-	<div class="card">
-		<div class="card-header">
-			Desenvolvimento web
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Título: Sistema de gerenciamento inteligente</h5><hr>
-			<h3>Autores:</h3>
-			<p class="card-text">
-				<ul>
-					<li>Aluno 1</li>
-					<li>Aluno 2</li>
-					<li>Aluno 3</li>
-				</ul>
-			</p>
-			<hr>
+	<?php foreach($trabalhos as $trabalho): ?>
+		<div class="card">
+			<div class="card-header">
+				<?php echo $trabalho['tema']; ?>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Título: <?php echo $trabalho['titulo']; ?></h5><hr>
+				<h5>Autores:</h5>
+				<p class="card-text">
+					<ul>
+						<?php foreach($trabalho['autores'] as $autor): ?>
+							<li><?php echo $autor['nome']; ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</p>
+				<hr>
 
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="<?php echo BASE_URL; ?>trabalhos/avaliar/" class="btn btn-success">Avaliar</a>
-		</div>
+				<h5>Orientador: <a href="<?php echo BASE_URL; ?>orientadores/orientacoes/<?php echo $trabalho['id_orientador']; ?>"><?php echo $trabalho['orientador']; ?></a></h5>
 
-		<div class="card-footer text-muted">
-		    Última atualização em: 10/10/2018
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="card">
-		<div class="card-header">
-			Inteligência Artificial
-		</div>
-		<div class="card-body">
-			<h5 class="card-title">Título: Algoritmo autônomo com redes neurais</h5><hr>
-			<h3>Autores:</h3>
-			<p class="card-text">
-				<ul>
-					<li>Aluno 1</li>
-					<li>Aluno 2</li>
-					<li>Aluno 3</li>
-				</ul>
-			</p>
-			<hr>
-
-			<a href="#" class="btn btn-primary">Visualizar</a>
-			<a href="<?php echo BASE_URL; ?>trabalhos/avaliar/" class="btn btn-success">Avaliar</a>
+				<hr>
+				<a href="../../../trabalhos/<?php echo $trabalho['ultimaEtapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
+				<?php if ($trabalho['avaliado'] == true) {
+					?>
+						<button class="btn btn-success">Avaliado</button>
+					<?php
+				} elseif ($trabalho['finalizado'] == true) {
+					?>
+						<a href="<?php echo BASE_URL; ?>trabalhos/avaliarTrabalho/<?php echo $trabalho['id']; ?>" class="btn btn-outline-dark">Avaliar</a>
+					<?php
+				} ?>
+			</div>
 
 		</div>
 
-		<div class="card-footer text-muted">
-		    Última atualização em: 14/10/2018
-		</div>
-	</div>
+		<hr>
+	<?php endforeach; ?>
 
+	
 	
 </div>

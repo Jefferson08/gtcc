@@ -5,8 +5,14 @@
 
 	<h1>Etapas</h1>
 	<hr>
+
+	<?php 
+		/*echo "<pre>";
+		print_r($eventos);
+		echo "</pre>";*/
+	 ?>
 	
-	<?php foreach($eventos as $evento): ?>
+	<?php foreach($eventos as $key => $evento): ?>
 
 		<?php if (!empty($evento['etapa'])) {
 			?>
@@ -20,38 +26,40 @@
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $evento['evento']; ?></h5><hr>
 						<a href="../../../trabalhos/<?php echo $evento['etapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
-						<button class="btn btn-primary" data-toggle="collapse" data-target="#comentarios">Comentários</button>
+						<button class="btn btn-primary" data-toggle="collapse" data-target="<?php echo("#comentarios".$key); ?>">Comentários</button>
 						<hr>
 
-						<div class="card border-secondary collapse" id="comentarios">
+						<div class="card border-secondary collapse" id="<?php echo("comentarios".$key); ?>">
 							<div class="card-header bg-dark text-center" style="color: white;">
 								Comentários:
 							</div>
 
 							<div class="card-body">
-								<div class="card">
-									<div class="card-header">
-										Orientador 1, às 13:44:20s
-									</div>
+								<div>
+									<?php foreach ($evento['comentarios'] as $comentario): ?>
+										<div class="card">
+											<div class="card-header">
+												<?php echo $comentario['nome']; ?>, em <?php echo $comentario['data_envio']; ?>
+											</div>
 
-									<div class="card-body">
-										<p class="card-text">
-											Nessa introdução, é importante também explicar os objetivos da pesquisa e as metodologia adotadas durante o processo.
-										</p>
-									</div>
+											<div class="card-body">
+												<p class="card-text">
+													<?php echo utf8_encode($comentario['comentario']); ?>
+												</p>
+											</div>
+										</div>
+
+										<hr>
+									<?php endforeach; ?>
 								</div>
 
-								<hr>
+								<textarea class="form-control"></textarea><br>
 
-								<div class="form-group">
-									<textarea class="form-control">
-										
-									</textarea>
-								</div>
-
-								<button class="btn btn-primary">Enviar</button>
+								<button class="btn btn-primary" onclick="adicionarComentario(<?php echo $evento['etapa']['id_trabalho']; ?>, <?php echo $evento['id']; ?>, this);">Enviar</button>
 							</div>
 						</div>
+
+						
 					</div>
 
 					<div class="card-footer">

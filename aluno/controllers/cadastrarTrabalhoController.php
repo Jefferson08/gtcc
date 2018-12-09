@@ -7,16 +7,18 @@
 
 			$a = new Alunos();
 
-			$dados['aluno'] = array("id" => $_SESSION['aLogin'], "nome" => $_SESSION['aNome']); 
-			$dados['temas'] = $a->getTemas();
-			$dados['orientadores'] = $a->getOrientadores();
-			$dados['qtdMax'] = $a->getQtdMax();
+			if ($a->checkAluno($_SESSION['aLogin'])) { //Verifica se o aluno já está em algum grupo
+				header('Location: '.BASE_URL.'etapas');
+			} else {
+				$dados['aluno'] = array("id" => $_SESSION['aLogin'], "nome" => $_SESSION['aNome']); 
+				$dados['temas'] = $a->getTemas();
+				$dados['orientadores'] = $a->getOrientadores();
+				$dados['qtdMax'] = $a->getQtdMax();
 
-			$dados['status'] = 0;
+				$dados['status'] = 0;
 
-			//VERIFICAR SE O ALUNO JÁ FOI INCLUIDO EM ALGUM GRUPO
-
-			$this->loadTemplate('cadastrar-trabalho', $dados); //Carrega a view (cadastrar-trabalho)
+				$this->loadTemplate('cadastrar-trabalho', $dados); //Carrega a view (cadastrar-trabalho)
+			}
 
 		}
 
@@ -52,6 +54,8 @@
 
 					$this->loadTemplate('cadastrar-trabalho', $dados);
 				}
+			} else {
+				header('Location: '.BASE_URL.'etapas');
 			}
 		}
 
