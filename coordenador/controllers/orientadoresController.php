@@ -3,69 +3,85 @@
 
 		public function index(){
 
-			$dados = array();
-			$dados['status'] = 0;
+			if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) { //Verifica se o usuário está logado
+				$dados = array();
+				$dados['status'] = 0;
 
-			$o = new Orientadores();
+				$o = new Orientadores();
 
-			$dados['orientadores'] = $o->getOrientadores();
+				$dados['orientadores'] = $o->getOrientadores();
 
-			$this->loadTemplate('orientadores', $dados); //Carrega o template (diretrizes) e passa o nome da view a ser carregada e os dados
-
+				$this->loadTemplate('orientadores', $dados); //Carrega o template (orientadores) e passa o nome da view a ser carregada e os dados
+			} else {
+				header('Location: '.BASE_URL.'login');
+				exit;
+			}
 		}
 
 		public function orientacoes($id_orientador = array()){
 
-			$dados = array();
+			if (empty($id_orientador)) {
+				header('Location: '.BASE_URL.'orientadores');
+				exit;
+			} else {
+				if (isset($_SESSION['cLogin']) && !empty($_SESSION['cLogin'])) { //Verifica se o usuário está logado
+					$dados = array();
 
-			$c = new Coordenador();
+					$c = new Coordenador();
 
-			$dados['orientacoes'] = $c->getOrientacoes($id_orientador);
+					$dados['orientacoes'] = $c->getOrientacoes($id_orientador);
 
-			$dados['status'] = 0;
+					$dados['status'] = 0;
 
-			$dados['nome_orientador'] = $c->getOrientador($id_orientador);
+					$dados['nome_orientador'] = $c->getOrientador($id_orientador);
 
-			$this->loadTemplate('orientacoes', $dados);
-
+					$this->loadTemplate('orientacoes', $dados);
+				} else {
+					header('Location: '.BASE_URL.'login');
+					exit;
+				}
+			}
 		}
 
 		public function cadastrar(){
 
-			$dados = array();
+			if (isset($_POST['nome'])) { //Verifica se o usuario está logado
+				$dados = array();
 
-			//Status 0 - Não faz nada
-			//Status 1 - alert "Preencha os campos!!"
-			//Status 2 - alert "Cadastrado com sucesso!!!"
+				//Status 0 - Não faz nada
+				//Status 1 - alert "Preencha os campos!!"
+				//Status 2 - alert "Cadastrado com sucesso!!!"
 
-			$o = new Orientadores();
+				$o = new Orientadores();
 
-			if (isset($_POST['nome'])) {
-				
-				if (!empty($_POST['nome']) && !empty($_POST['email'])) {
+				if (isset($_POST['nome'])) {
 					
-					$nome = $_POST['nome'];
-					$email = $_POST['email'];
-					$senha = md5('teste');
+					if (!empty($_POST['nome']) && !empty($_POST['email'])) {
+						
+						$nome = $_POST['nome'];
+						$email = $_POST['email'];
+						$senha = md5('teste');
 
-					$o->cadastrarOrientador($nome, $email, $senha);
+						$o->cadastrarOrientador($nome, $email, $senha);
 
-					$dados['status'] = 2;
+						$dados['status'] = 2;
 
-					$dados['orientadores'] = $o->getOrientadores();
+						$dados['orientadores'] = $o->getOrientadores();
 
-					$this->loadTemplate('orientadores', $dados);
+						$this->loadTemplate('orientadores', $dados);
 
-				} else {
+					} else {
 
-					$dados['status'] = 1;
+						$dados['status'] = 1;
 
-					$dados['orientadores'] = $o->getOrientadores();
+						$dados['orientadores'] = $o->getOrientadores();
 
-					$this->loadTemplate('orientadores', $dados);
-
+						$this->loadTemplate('orientadores', $dados);
+					}
 				}
-
+			} else {
+				header('Location: '.BASE_URL.'orientadores');
+				exit;
 			}
 		}
 

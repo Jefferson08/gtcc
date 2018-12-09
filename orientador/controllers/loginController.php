@@ -5,15 +5,16 @@
 		public function index(){
 			$status['status'] = 0;
 
-			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
+			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) { //Verifica se o usuário está logado
 				header('Location: '.BASE_URL.'trabalhos');
+				exit;
 			} else {
 				$this->loadTemplate('login', $status);
 			}
 
 		}
 
-		public function entrar(){
+		public function entrar(){ //Método que recebe o envio do formulário de login
 			$status['status'] = 0;
 
 			//status 0 - Não exibe alert 
@@ -31,6 +32,7 @@
 
 					if ($user->login($email, $senha)) { //Verifica o login
 						header('Location: '.BASE_URL.'trabalhos');
+						exit;
 					} else {
 						$status['status'] = 2;
 

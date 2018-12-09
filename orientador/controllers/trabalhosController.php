@@ -16,55 +16,103 @@
 				
 			} else {
 				header('Location: '.BASE_URL.'login');
+				exit;
 			}
 		}
 
 		public function etapas($id_trabalho = array()){
 
-			$dados = array();
+			if (empty($id_trabalho)) {
+				header('Location: '.BASE_URL.'trabalhos');
+				exit;
+			} else {
+				if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
+					$dados = array();
 
-			$o = new Orientadores();
+					$o = new Orientadores();
 
-			$dados['eventos'] = $o->getEtapas($id_trabalho);
+					$dados['eventos'] = $o->getEtapas($id_trabalho);
 
-			$this->loadTemplate('etapas', $dados);
+					$this->loadTemplate('etapas', $dados);
+				} else {
+					header('Location: '.BASE_URL.'login');
+					exit;
+				}
+			}
 		}
 
 		public function avaliarTrabalho($id_trabalho = array()){
 
-			$dados = array();
-
-			$o = new Orientadores();
-
-			if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+			if (empty($id_trabalho)) {
 				header('Location: '.BASE_URL.'trabalhos');
+				exit;
 			} else {
-				$dados['avaliado'] = $o->checkAvaliacao($id_trabalho);
+				$dados = array();
 
-				$dados['id_trabalho'] = $id_trabalho;
+				$o = new Orientadores();
 
-				$dados['titulo_trabalho'] = $o->getTitulo($id_trabalho);
+				if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
+					
+					if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+						header('Location: '.BASE_URL.'trabalhos');
+						exit;
+					} else {
+						$dados['avaliado'] = $o->checkAvaliacao($id_trabalho);
 
-				$this->loadTemplate('avaliacao', $dados);
+						$dados['id_trabalho'] = $id_trabalho;
+
+						$dados['titulo_trabalho'] = $o->getTitulo($id_trabalho);
+
+						$dados['status'] = 0;
+
+						$this->loadTemplate('avaliacao', $dados);
+					}
+				} else {
+					header('Location: '.BASE_URL.'login');
+					exit;
+				}
 			}
 		}
 
 		public function enviar($id_trabalho = array()){
 
-			$o = new Orientadores();
-
-			if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+			if (empty($id_trabalho)) {
 				header('Location: '.BASE_URL.'trabalhos');
+				exit;
 			} else {
-				if (isset($_POST['nota']) && !empty($_POST['nota'])) {
-				
-					$nota = $_POST['nota'];
+				$o = new Orientadores();
 
-					echo "NOTA: ".$nota;
-					
-					$o->avaliar($id_trabalho, $nota);
+				if (isset($_POST)) {
 
-					header('Location: '.BASE_URL.'trabalhos');
+					if ($o->checkAvaliacao($id_trabalho)) { //Se o trabalho já foi avaliado redireciona pra trabalhos
+						header('Location: '.BASE_URL.'trabalhos');
+						exit;
+					} else {
+						if (isset($_POST['nota']) && !empty($_POST['nota'])) {
+						
+							$nota = $_POST['nota'];
+
+							echo "NOTA: ".$nota;
+							
+							$o->avaliar($id_trabalho, $nota);
+
+							header('Location: '.BASE_URL.'trabalhos');
+							exit;
+						} else {
+							$dados['avaliado'] = $o->checkAvaliacao($id_trabalho);
+
+							$dados['id_trabalho'] = $id_trabalho;
+
+							$dados['titulo_trabalho'] = $o->getTitulo($id_trabalho);
+
+							$dados['status'] = 1;
+
+							$this->loadTemplate('avaliacao', $dados);
+						}
+					}
+				} else {
+					header('Location: '.BASE_URL.'trabalhos/avaliarTrabalho');
+					exit;
 				}
 			}
 		}

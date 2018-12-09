@@ -8,6 +8,12 @@
 
 	<hr>
 
+	<?php if ($status == 1) {
+		?>
+			<div class="alert alert-warning">Insira uma nota !!!</div>
+		<?php
+	} ?>
+
 	<form method="POST" action="<?php echo BASE_URL; ?>trabalhos/enviar/<?php echo $id_trabalho; ?>">
 		<div class="form-group">
 		<h4>Atribua uma nota de 0 a 2 pontos:</h4>

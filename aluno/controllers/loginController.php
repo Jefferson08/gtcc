@@ -12,6 +12,7 @@
 					header('Location: '.BASE_URL.'etapas/');
 				} else {
 					header('Location: '.BASE_URL.'cadastrarTrabalho'); //Se não, redireciona para cadastrarTrabalho
+					exit;
 				}
 			} else {
 				$this->loadTemplate('login', $status);
@@ -37,8 +38,10 @@
 					if ($aluno->login($ra, $senha)) { //Verifica o login
 						if ($aluno->checkAluno($_SESSION['aLogin'])) { //Verifica se o aluno está cadastrado em algum grupo
 							header('Location: '.BASE_URL.'etapas/');
+							exit;
 						} else {
 							header('Location: '.BASE_URL.'cadastrarTrabalho');
+							exit;
 						}
 					} else {
 						$status['status'] = 2;

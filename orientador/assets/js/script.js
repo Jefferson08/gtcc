@@ -9,8 +9,32 @@ function adicionarComentario(id_trabalho, id_evento, botao){
 
 	var text = $(botao).prev().prev();
 
-	var card = $(botao).prev().prev().prev();
+	text = $(text).val();
 
-	card.prepend('<h1>novo comentario</h1>');
+	if (text == "") {
+		alert("Escreva um comentário!!!");
+	} else {
+
+		$.ajax({
+			url:'http://projeto.pc/orientador/ajax/adicionarComentario/',
+			type:'POST',
+			data:{
+				id_trabalho:id_trabalho,
+				id_evento:id_evento,
+				comentario:text
+			},
+			dataType:'json',
+			success:function(json){
+
+				var card = $(botao).prev().prev().prev();
+
+				var comment = '<div class="card"><div class="card-header">'+json.nome+', em '+json.data_envio+'</div><div class="card-body">'+json.comentario+'</div></div><hr>';
+
+				card.prepend(comment);
+				
+			}
+			
+		});
+	}
 
 }

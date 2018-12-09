@@ -44,7 +44,7 @@
 
 											<div class="card-body">
 												<p class="card-text">
-													<?php echo utf8_encode($comentario['comentario']); ?>
+													<?php echo $comentario['comentario']; ?>
 												</p>
 											</div>
 										</div>

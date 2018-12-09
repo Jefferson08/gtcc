@@ -51,9 +51,9 @@
 
 			<div class="navbar-nav ml-auto">
 
-					<a href=""><button class="btn btn-primary nav-item nav-link headerButtons" style="margin-right: 20px; color: white;">Notificações</button></a>
+					<a href="" class="btn btn-primary" style="margin-right: 20px;">Notificações</a>
 					
-					<a href="<?php echo BASE_URL; ?>/logout"><button class="btn btn-primary nav-item nav-link headerButtons" style="margin-right: 20px; color: white;">Sair</button></a>
+					<a href="<?php echo BASE_URL; ?>logout" class="btn btn-primary" style="margin-right: 20px;">Sair</a>
 				
 			</div>
 

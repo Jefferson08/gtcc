@@ -1,10 +1,12 @@
 <?php 
 	class etapasController extends controller{
 
-		public function index($id_aluno = array()){
-			$a = new Alunos();
+		public function index(){
+			
+			if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
 
-			if (isset($_SESSION['aLogin'])) {
+				$a = new Alunos();
+
 				$id_aluno = $_SESSION['aLogin'];
 
 				if ($a->checkAluno($_SESSION['aLogin'])) {
@@ -19,118 +21,156 @@
 					$this->loadTemplate('etapas', $dados); //Carrega o template (diretrizes) e passa o nome da view a ser carregada e os dados
 				} else {
 					header('Location: '.BASE_URL.'cadastrarTrabalho');
+					exit;
 				}
 			} else {
 				header('Location: '.BASE_URL.'login');
+				exit;
 			}
-
 		}
 
 		public function enviar($id_evento = array()){
-			$dados = array();
+			if (empty($id_evento)) {
+				header('Location: '.BASE_URL.'etapas');
+				exit;
+			} else {
+				if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
+					$dados = array();
 
-			$a = new Alunos();
+					$a = new Alunos();
 
-			$dados['evento'] = $a->getEvento($id_evento);
-			$dados['id_evento'] = $id_evento;
-			$dados['status'] = 0;
-			
-			$this->loadTemplate('enviar', $dados);
+					$dados['evento'] = $a->getEvento($id_evento);
+					$dados['id_evento'] = $id_evento;
+					$dados['status'] = 0;
+					
+					$this->loadTemplate('enviar', $dados);
+				} else {
+					header('Location: '.BASE_URL.'etapas');
+					exit;
+				}
+			}
 		}
 
 		public function enviarEtapa($id_evento = array()){ //Trata o formulário do primeiro envio da etapa
-			$dados = array();
 
-			$a = new Alunos();
+			if (empty($id_evento)) {
+				header('Location: '.BASE_URL.'etapas');
+				exit;
+			} else {
+				if (isset($_POST['trabalho'])) {
+					$dados = array();
 
-			$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
-			 
-			$dados['evento'] = $a->getEvento($id_evento);
-			$dados['id_evento'] = $id_evento;
+					$a = new Alunos();
 
-			//Status 0 - Não faz nada
-			//Status 1 - Alert "Somente Pdf"
-			//Status 2 - Selecione um arquivo
+					$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
+					 
+					$dados['evento'] = $a->getEvento($id_evento);
+					$dados['id_evento'] = $id_evento;
 
-			if (isset($_POST)) {
-				if (isset($_FILES['trabalho']) && !empty($_FILES['trabalho']['name'])) {
+					//Status 0 - Não faz nada
+					//Status 1 - Alert "Somente Pdf"
+					//Status 2 - Selecione um arquivo
 
-					$trabalho = $_FILES['trabalho'];
+					if (isset($_FILES['trabalho']) && !empty($_FILES['trabalho']['name'])) {
 
-					if (in_array($trabalho['type'], array('application/pdf'))) { //Verifica se o arquivo é um pdf
-				
+						$trabalho = $_FILES['trabalho'];
 
-						$a->cadastrarEtapa($id_trabalho, $id_evento, $trabalho);
+						if (in_array($trabalho['type'], array('application/pdf'))) { //Verifica se o arquivo é um pdf
+					
 
-						header('Location: '.BASE_URL.'etapas/index/');
+							$a->cadastrarEtapa($id_trabalho, $id_evento, $trabalho);
 
+							header('Location: '.BASE_URL.'etapas/index/');
+							exit;
+
+						} else {
+							$dados['status'] = 1;
+							$this->loadTemplate('enviar', $dados);
+						}
 					} else {
-						$dados['status'] = 1;
+						$dados['status'] = 2;
 						$this->loadTemplate('enviar', $dados);
 					}
 				} else {
-					$dados['status'] = 2;
-					$this->loadTemplate('enviar', $dados);
+					header('Location: '.BASE_URL.'etapas');
+					exit;
 				}
 			}
 
 		}
 
 		public function atualizar($id_etapa = array()){
-			$dados = array();
+			if (empty($id_etapa)) {
+				header('Location: '.BASE_URL.'etapas');
+			} else {
 
-			$a = new Alunos();
+				if (isset($_SESSION['aLogin']) && !empty($_SESSION['aLogin'])) {
+					$dados = array();
 
-			$etapa = $a->getEtapa($id_etapa);
+					$a = new Alunos();
 
-			$evento = $a->getEvento($etapa['id_evento']);
+					$etapa = $a->getEtapa($id_etapa);
 
-			$dados['evento'] = $evento;
-			$dados['id_etapa'] = $id_etapa;
-			$dados['status'] = 0;
-			
-			$this->loadTemplate('atualizar', $dados);
+					$evento = $a->getEvento($etapa['id_evento']);
+
+					$dados['evento'] = $evento;
+					$dados['id_etapa'] = $id_etapa;
+					$dados['status'] = 0;
+					
+					$this->loadTemplate('atualizar', $dados);
+				} else {
+					header('Location: '.BASE_URL.'etapas');
+				}
+			}
 		}
 
 		public function atualizarEtapa($id_etapa = array()){ //Trata o formulário da atualização da etapa
-			$dados = array();
+		
+			if (empty($id_etapa)) {
+				header('Location: '.BASE_URL.'etapas');
+			} else {
+				if (isset($_POST)) {
+					$dados = array();
 
-			$a = new Alunos();
+					$a = new Alunos();
 
-			$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
-			
-			$etapa = $a->getEtapa($id_etapa);
+					$id_trabalho = $a->getIdTrabalho($_SESSION['aLogin']);
+					
+					$etapa = $a->getEtapa($id_etapa);
 
-			$evento = $a->getEvento($etapa['id_evento']);
+					$evento = $a->getEvento($etapa['id_evento']);
 
-			$dados['evento'] = $evento;
-			$dados['id_etapa'] = $id_etapa;
-			$dados['status'] = 0;
+					$dados['evento'] = $evento;
+					$dados['id_etapa'] = $id_etapa;
+					$dados['status'] = 0;
 
-			//Status 0 - Não faz nada
-			//Status 1 - Alert "Somente Pdf"
-			//Status 2 - Selecione um arquivo
+					//Status 0 - Não faz nada
+					//Status 1 - Alert "Somente Pdf"
+					//Status 2 - Selecione um arquivo
 
-			if (isset($_POST)) {
-				if (isset($_FILES['trabalho']) && !empty($_FILES['trabalho']['name'])) {
 
-					$trabalho = $_FILES['trabalho'];
+					if (isset($_FILES['trabalho']) && !empty($_FILES['trabalho']['name'])) {
 
-					if (in_array($trabalho['type'], array('application/pdf'))) { //Verifica se o arquivo é um pdf
+						$trabalho = $_FILES['trabalho'];
 
-						$url_antiga = $etapa['url'];
-						
-						$a->atualizarEtapa($trabalho, $url_antiga, $id_etapa);
+						if (in_array($trabalho['type'], array('application/pdf'))) { //Verifica se o arquivo é um pdf
 
-						header('Location: '.BASE_URL.'etapas/index/');
+							$url_antiga = $etapa['url'];
+							
+							$a->atualizarEtapa($trabalho, $url_antiga, $id_etapa);
 
+							header('Location: '.BASE_URL.'etapas/index/');
+
+						} else {
+							$dados['status'] = 1;
+							$this->loadTemplate('atualizar', $dados);
+						}
 					} else {
-						$dados['status'] = 1;
+						$dados['status'] = 2;
 						$this->loadTemplate('atualizar', $dados);
 					}
 				} else {
-					$dados['status'] = 2;
-					$this->loadTemplate('atualizar', $dados);
+					header('Location: '.BASE_URL.'etapas');
 				}
 			}
 		}

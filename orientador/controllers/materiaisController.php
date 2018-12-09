@@ -2,15 +2,21 @@
 	class materiaisController extends controller{
 
 		public function index(){
-			$dados = array();
+			if (isset($_SESSION['oLogin']) && !empty($_SESSION['oLogin'])) {
+				$dados = array();
 
-			$o = new Orientadores();
+				$o = new Orientadores();
 
-			$dados['materiais'] = $o->getMateriais();
+				$dados['materiais'] = $o->getMateriais();
 
-			$dados['status'] = 0;
+				$dados['status'] = 0;
 
-			$this->loadTemplate('materiais', $dados);
+				$this->loadTemplate('materiais', $dados);
+				
+			} else {
+				header('Location: '.BASE_URL.'login');
+				exit;
+			}
 		}
 
 		public function enviarMaterial(){
@@ -33,14 +39,13 @@
 
 		public function enviar(){
 
-			$dados = array();
-
-			$o = new Orientadores();
-
-			$dados['trabalhos'] = $o->getTrabalhos($_SESSION['oLogin']);
-
-
 			if (isset($_POST['trabalho'])) {
+				$dados = array();
+
+				$o = new Orientadores();
+
+				$dados['trabalhos'] = $o->getTrabalhos($_SESSION['oLogin']);
+
 				if (!empty($_POST['titulo']) && !empty($_POST['descricao'])) {
 
 					if ((isset($_FILES['material']) && !empty($_FILES['material']['name'])) || !empty($_POST['link'])) { //Verifica se enviou um arquivo ou um link
@@ -58,6 +63,7 @@
 								$o->cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material);
 
 								header('Location: '.BASE_URL.'materiais');
+								exit;
 
 							} else {
 								$dados['status'] = 3;
@@ -76,6 +82,7 @@
 						
 								$o->cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material);
 								header('Location: '.BASE_URL.'materiais');
+								exit;
 
 							} else {
 								$dados['status'] = 3;
@@ -91,6 +98,7 @@
 
 							$o->cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material);
 							header('Location: '.BASE_URL.'materiais');
+							exit;
 
 						}
 
@@ -104,8 +112,10 @@
 					$dados['status'] = 1;
 					$this->loadTemplate('enviar-material', $dados);
 				}
+			} else {
+				header('Location: '.BASE_URL.'materiais');
+				exit;
 			}
-
 		}
 	}
  ?>

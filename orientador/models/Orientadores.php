@@ -281,6 +281,42 @@
 			}
 		}
 
+		function adicionarComentario($id_trabalho, $id_evento, $comentario){
+			$id_orientador = $_SESSION['oLogin'];
+
+			$sql = "INSERT INTO comentarios SET id_trabalho = :id_trabalho, id_orientador = :id_orientador, id_etapa = :id_etapa, comentario = :comentario, data_envio = NOW()";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':id_orientador', $id_orientador);
+			$sql->bindValue(':id_etapa', $id_evento);
+			$sql->bindValue(':comentario', $comentario);
+			$sql->execute();
+
+			$last_id = $this->db->lastInsertId();
+
+			$comentario = $this->getComentario($last_id);
+
+			return $comentario;
+		}
+
+		function getComentario($last_id){
+
+			$sql = "SELECT orientadores.nome, comentarios.comentario, comentarios.data_envio FROM orientadores, comentarios WHERE comentarios.id_orientador = orientadores.id AND comentarios.id = :last_id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':last_id', $last_id);
+			$sql->execute();
+
+			$comentario = $sql->fetch();
+
+			$data_envio = date_create($comentario['data_envio']); 
+			$data_envio = date_format($data_envio, 'd/m/Y \à\s\ H\h\ i\m\i\n');
+
+			$comentario['data_envio'] = $data_envio;
+			
+			return $comentario;
+
+		}
+
 		function avaliar($id_trabalho, $nota){
 
 			$sql = "INSERT INTO notas_orientador SET id_trabalho = :id_trabalho, nota = :nota";

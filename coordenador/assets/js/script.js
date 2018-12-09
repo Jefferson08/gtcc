@@ -61,21 +61,24 @@ function addTema(tema){
 function excluirTema(id, botao){
 	event.preventDefault();
 
-	tr = $(botao).closest('tr');
+	var r = confirm("Tem certeza que deseja excluir este tema ?");
 
-	$.ajax({
-		url:'http://projeto.pc/coordenador/ajax/excluirTema/',
-		type:'POST',
-		data:{id_tema:id},
-		dataType:'json',
-		complete:function(){
+	if (r == true) {
+		tr = $(botao).closest('tr');
 
-			alert("Excluiu Tema!!!");
-			tr.remove();
+		$.ajax({
+			url:'http://projeto.pc/coordenador/ajax/excluirTema/',
+			type:'POST',
+			data:{id_tema:id},
+			dataType:'json',
+			complete:function(){
+				
+				tr.remove();
+				
+			}
 			
-		}
-		
-	});
+		});
+	} 
 }
 
 function excluirOrientador(id, botao){

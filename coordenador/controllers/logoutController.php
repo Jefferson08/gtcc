@@ -6,7 +6,8 @@
 
 			$_SESSION['cLogin'] = "";
 			$_SESSION['cNome'] = "";
-			header("Location: ".BASE_URL);
+			header('Location: http://projeto.pc/');
+			exit;
 
 		}
 	}

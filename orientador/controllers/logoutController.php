@@ -6,7 +6,8 @@
 
 			$_SESSION['oLogin'] = "";
 			$_SESSION['oNome'] = "";
-			header("Location: ".BASE_URL);
+			header('location: http://projeto.pc/');
+			exit;
 
 		}
 	}
