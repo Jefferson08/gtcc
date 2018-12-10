@@ -20,6 +20,7 @@ $('#adicionarAluno').bind('click', function(e){
 
 				if (json.length == 0) {
 					alert("Aluno não encontrado!!!");
+					$('#ra').val('');
 				}else{
 					addAluno(json.id, json.nome, json.qtdMax);
 					$('#ra').val('');
@@ -34,7 +35,6 @@ $('#adicionarAluno').bind('click', function(e){
 	}
 
 });
-
 
 
 function addAluno(id, nome, qtdMax){
@@ -59,3 +59,46 @@ remove = function(item){
 
 	return false;
 }
+
+function lerNotificacao(id_notificacao){
+	$.ajax({
+		url:'http://projeto.pc/aluno/ajax/lerNotificacao/',
+		type:'POST',
+		data:{id_notificacao:id_notificacao},
+		dataType:'json'
+	});
+}
+
+$(function(){
+
+	$.ajax({
+		url:'http://projeto.pc/aluno/ajax/getNotificacoes/',
+		type:'POST',
+		dataType:'json',
+		success:function(json){
+
+			var dropdown = $('#notificacoes_aluno').parent();
+
+			var badge = $('#badge');
+
+			var lista = "";
+
+			$(badge).html(json.qtd);
+
+			if (json.qtd > 0) {
+				lista = '<div class="dropdown-menu dropdown-menu-right"><hr style="margin-top: 0; margin-bottom: 0">';
+
+				$.each( json.notificacoes, function( key, notificacao ) {
+				  	lista += '<a href="'+notificacao.link+'" class="dropdown-item h5" onclick="lerNotificacao('+notificacao.id+')">'+notificacao.texto+'</a>';
+				});
+
+				lista += '</div>';
+
+				$(dropdown).append(lista);
+
+			} 
+	
+		}
+	});
+
+});

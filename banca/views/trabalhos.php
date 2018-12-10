@@ -20,17 +20,24 @@
 				</p>
 				<hr>
 
-				<h5>Orientador: <a href="<?php echo BASE_URL; ?>orientadores/orientacoes/<?php echo $trabalho['id_orientador']; ?>"><?php echo $trabalho['orientador']; ?></a></h5>
+				<h5>Orientador: <?php echo $trabalho['orientador']; ?></h5>
 
 				<hr>
-				<a href="../../../trabalhos/<?php echo $trabalho['ultimaEtapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
+
 				<?php if ($trabalho['avaliado'] == true) {
 					?>
+						<a href="../../../trabalhos/<?php echo $trabalho['ultimaEtapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
 						<button class="btn btn-success">Avaliado</button>
 					<?php
-				} elseif ($trabalho['finalizado'] == true) {
+				} else if ($trabalho['finalizado'] == true) {
 					?>
+						<a href="../../../trabalhos/<?php echo $trabalho['ultimaEtapa']['url']; ?>" target="_blank" class="btn btn-secondary">Visualizar</a>
+
 						<a href="<?php echo BASE_URL; ?>trabalhos/avaliarTrabalho/<?php echo $trabalho['id']; ?>" class="btn btn-outline-dark">Avaliar</a>
+					<?php
+				} else {
+					?>
+						<button class="btn btn-danger">Ainda não finalizado</button>
 					<?php
 				} ?>
 			</div>

@@ -41,6 +41,8 @@
 
 						$dados['titulo_trabalho'] = $a->getTitulo($id_trabalho);
 
+						$dados['nota_max'] = $a ->getNotaMax();
+
 						$dados['status'] = 0;
 
 						$this->loadTemplate('avaliacao', $dados);
@@ -80,6 +82,8 @@
 							$dados['id_trabalho'] = $id_trabalho;
 
 							$dados['titulo_trabalho'] = $a->getTitulo($id_trabalho);
+
+							$dados['nota_max'] = $a ->getNotaMax();
 
 							$dados['status'] = 1;
 

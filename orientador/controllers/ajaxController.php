@@ -29,5 +29,27 @@
 				exit;
 			}
 		}
+
+		function getNotificacoes(){
+
+			$o = new Orientadores();
+
+			$notificacoes = $o->getNotificacoes();
+
+			echo json_encode($notificacoes);
+		}
+
+		function lerNotificacao(){
+
+			if (isset($_POST['id_notificacao'])) {
+				$o = new Orientadores();
+
+				$id_notificacao = $_POST['id_notificacao'];
+
+				$o->lerNotificacao($id_notificacao);
+			}
+
+			exit;
+		}
 	}
  ?>

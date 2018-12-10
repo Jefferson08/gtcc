@@ -38,3 +38,48 @@ function adicionarComentario(id_trabalho, id_evento, botao){
 	}
 
 }
+
+function lerNotificacao(id_notificacao){  //Requisição para atualizar a notificação para lida
+	$.ajax({
+		url:'http://projeto.pc/orientador/ajax/lerNotificacao/',
+		type:'POST',
+		data:{id_notificacao:id_notificacao},
+		dataType:'json'
+	});
+}
+
+$(function(){ 
+
+	//Requisição pra pegar e mostrar as notificações
+
+	$.ajax({
+		url:'http://projeto.pc/orientador/ajax/getNotificacoes/',
+		type:'POST',
+		dataType:'json',
+		success:function(json){
+
+			var dropdown = $('#notificacoes_orientador').parent();
+
+			var badge = $('#badge');
+
+			var lista = "";
+
+			$(badge).html(json.qtd);
+
+			if (json.qtd > 0) {
+				lista = '<div class="dropdown-menu dropdown-menu-right"><hr style="margin-top: 0; margin-bottom: 0">';
+
+				$.each( json.notificacoes, function( key, notificacao ) {
+				  	lista += '<a href="'+notificacao.link+'" class="dropdown-item h5" onclick="lerNotificacao('+notificacao.id+')">'+notificacao.texto+'</a>';
+				});
+
+				lista += '</div>';
+
+				$(dropdown).append(lista);
+
+			} 
+	
+		}
+	});
+
+});

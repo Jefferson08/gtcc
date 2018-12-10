@@ -57,7 +57,7 @@
 				header('Location: '.BASE_URL.'etapas');
 				exit;
 			} else {
-				if (isset($_POST['trabalho'])) {
+				if (isset($_POST)) {
 					$dados = array();
 
 					$a = new Alunos();

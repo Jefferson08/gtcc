@@ -4,7 +4,7 @@
 	
 	class Coordenador extends model {
 
-		function login($email, $senha){
+		function login($email, $senha){ //Verifica os dados do usuário no banco
 			
 			$sql = "SELECT id, nome FROM coordenadores WHERE email = :email AND senha = :senha";
 			$sql = $this->db->prepare($sql);
@@ -21,7 +21,7 @@
 			}
 		}
 
-		function cadastrarDiretrizes($qtdMax, $temas){
+		function cadastrarDiretrizes($qtdMax, $temas){ //Cadastra as diretrizes no banco
 
 			$sql = "UPDATE diretrizes SET qtdMax = :qtd";
 			$sql = $this->db->prepare($sql);
@@ -37,7 +37,7 @@
 
 		}
 
-		function getDiretrizes() {
+		function getDiretrizes() { //Retorna as diretrizes cadastradas no banco
 			$diretrizes = array();
 
 			$sql = "SELECT * FROM temas";
@@ -65,7 +65,7 @@
 			return $diretrizes;
 		}
 
-		function getCronograma(){
+		function getCronograma(){ //Retorna o cronograma/eventos do banco
 
 			$cronograma = array();
 
@@ -91,7 +91,7 @@
 			}
 		}
 
-		function getTrabalhos(){
+		function getTrabalhos(){ //Retorna todos os trabalhos
 			$trabalhos = array();
 
 			$sql = "SELECT trabalhos.id, temas.tema, trabalhos.id_orientador, orientadores.nome AS orientador, trabalhos.titulo FROM trabalhos, temas, orientadores WHERE trabalhos.id_tema = temas.id AND trabalhos.id_orientador = orientadores.id";
@@ -122,7 +122,7 @@
 
 		}
 
-		function getAutores($id_trabalho){
+		function getAutores($id_trabalho){ //Retorna os autores do trabalho
 			$autores = array();
 
 			$sql = "SELECT alunos.nome FROM alunos, grupos WHERE alunos.id = grupos.id_aluno AND id_trabalho = :id_trabalho";
@@ -136,7 +136,7 @@
 
 		}
 
-		function getEtapas($id_trabalho){
+		function getEtapas($id_trabalho){ //Retorna os eventos e as etapas realizadas
 			$eventos = array();
 
 			$sql = "SELECT * FROM cronograma";
@@ -187,7 +187,7 @@
 			return $eventos;
 		}
 
-		function getOrientador($id_orientador){
+		function getOrientador($id_orientador){ //Retorna o nome do orientador
 
 			$sql = "SELECT nome FROM orientadores WHERE id = $id_orientador";
 			$sql = $this->db->query($sql);
@@ -200,7 +200,7 @@
 			return $nome_orientador;
 		}
 
-		function getOrientacoes($id_orientador){
+		function getOrientacoes($id_orientador){ //Retorna as orientações realizadas pelo orientador
 			$orientacoes = array();
 
 			$sql = "SELECT orientacoes.titulo, orientacoes.descricao, orientacoes.data, trabalhos.titulo AS titulo_trabalho from orientacoes, trabalhos where trabalhos.id = orientacoes.id_trabalho AND orientacoes.id_orientador = $id_orientador ORDER BY orientacoes.data DESC";
@@ -224,7 +224,7 @@
 			}
 		}
 
-		function getTitulo($id_trabalho){
+		function getTitulo($id_trabalho){ //Retorna o título do trabalho
 
 			$sql = "SELECT titulo FROM trabalhos WHERE id = $id_trabalho";
 			$sql = $this->db->prepare($sql);
@@ -237,7 +237,7 @@
 			return $titulo;
 		}
 
-		function cadastrarCronograma($eventos, $datas){
+		function cadastrarCronograma($eventos, $datas){ //Cadastra os eventos do cronograma no banco
 
 			$cronograma = array();
 
@@ -264,7 +264,7 @@
 
 		}
 
-		function excluirTema($id){
+		function excluirTema($id){ //Exclui um tema do banco
 
 			$sql = "DELETE FROM temas WHERE id = :id";
 			$sql = $this->db->prepare($sql);
@@ -272,7 +272,7 @@
 			$sql->execute();
 		}
 
-		function excluirEvento($id){
+		function excluirEvento($id){ //Exclui um evento do cronograma no banco
 
 			$sql = "DELETE FROM cronograma WHERE id = :id";
 			$sql = $this->db->prepare($sql);
@@ -302,7 +302,7 @@
 
 		}
 
-		function checkAvaliacao($id_trabalho){
+		function checkAvaliacao($id_trabalho){ //Verifica se o trabalho já foi avaliado
 
 			$sql = "SELECT * FROM notas_coordenador WHERE id_trabalho = $id_trabalho";
 			$sql = $this->db->query($sql);
@@ -315,12 +315,29 @@
 			}
 		}
 
-		function avaliar($id_trabalho, $nota){
+		function avaliar($id_trabalho, $nota){ //Cadastra a avaliação no banco
 
 			$sql = "INSERT INTO notas_coordenador SET id_trabalho = :id_trabalho, nota = :nota";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id_trabalho', $id_trabalho);
 			$sql->bindValue(':nota', $nota);
+			$sql->execute();
+
+			$this->novaNotificacao($id_trabalho);
+
+
+		}
+
+		function novaNotificacao($id_trabalho){ //Adiciona uma nova notificação de avaliação no banco
+
+			$texto = "Avaliado por ".$_SESSION['cNome'];
+			$link = "http://projeto.pc/aluno/notas";
+
+			$sql = "INSERT INTO notificacoes SET id_trabalho = :id_trabalho, texto = :texto, link = :link";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $id_trabalho);
+			$sql->bindValue(':texto', $texto);
+			$sql->bindValue(':link', $link);
 			$sql->execute();
 		}
 

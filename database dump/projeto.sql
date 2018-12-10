@@ -31,7 +31,7 @@ CREATE TABLE `alunos` (
   `RA` int(11) NOT NULL,
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,8 +40,62 @@ CREATE TABLE `alunos` (
 
 LOCK TABLES `alunos` WRITE;
 /*!40000 ALTER TABLE `alunos` DISABLE KEYS */;
-INSERT INTO `alunos` VALUES (1,'Aluno 1','aluno1@teste.com',28250001,'095a8630a066f0576b72887433be0c16'),(2,'Aluno 2','aluno2@teste.com',28250002,'05d6533fbef1cda27b9cb2a9345dceec'),(3,'Aluno 3','aluno3@teste.com',28250003,'e136c54876b8b9acd2d19a062c12e065'),(4,'Aluno 4','aluno4@teste.com',28250004,'adc1af26f77328f99b46c03dbcfddaa1'),(5,'Aluno 5','aluno5@teste.com',28250005,'c3f13279768fdea1badf7f585d63f3ed'),(6,'Aluno 6','aluno6@teste.com',28250006,'5848b631c2ee9e41e47905fb383ecafe'),(7,'Aluno 7','aluno7@teste.com',28250007,'382bb1488507541785a96d8a87e6abbd'),(8,'Aluno 8','aluno8@teste.com',28250008,'2c316cca153d452c8bc7e4b9fafc4163'),(9,'Aluno 9','aluno9@teste.com',28250009,'e5d8ce51c3a5687c77d389df65819e38'),(10,'Aluno 10','aluno10@teste.com',28250010,'a4889a36a0629dc85e3c4103aa59f5c4'),(11,'Aluno 11','aluno11@teste.com',28250011,'9bf429bc0fd488f7f583a513377d6716'),(12,'Aluno 12','aluno12@teste.com',28250012,'a62011b51151b7ab9c8c6f0cab006a68'),(13,'Aluno 13','aluno13@teste.com',28250013,'c0542d9802c5c3d7d39483a220cf3b80'),(14,'Aluno 14','aluno14@teste.com',28250014,'88668d241a2f2d35fbb1604e9a1f0f09'),(15,'Aluno 15','aluno15@teste.com',28250015,'7e6a7eeeac4f0201a4623244c8e4431e'),(16,'Aluno 16','aluno16@teste.com',28250016,'2cdbaa3ab0757253aa39c0dd48ce9bd7'),(17,'Aluno 17','aluno17@teste.com',28250017,'8e8cd5c97e04e987027512d9f1f56f19'),(18,'Aluno 18','aluno18@teste.com',28250018,'7814a78ee40eac63390652198a3783b0'),(19,'Aluno 19','aluno19@teste.com',28250019,'d7ae00ab4d2072f06971d3e9214545a8'),(20,'Aluno 20','aluno20@teste.com',28250020,'9979ed3fdf5d6a7600f6c53576384e91');
+INSERT INTO `alunos` VALUES (1,'Jefferson Carvalho','jefferson@teste.com',28250001,'698dc19d489c4e4db73e28a713eab07b'),(2,'Matheus Pereira','matheus@teste.com',28250002,'698dc19d489c4e4db73e28a713eab07b'),(3,'Gabriel Pereira','gabriel@teste.com',28250003,'698dc19d489c4e4db73e28a713eab07b'),(4,'Vinicius Costa','vinicius@teste.com',28250004,'698dc19d489c4e4db73e28a713eab07b'),(5,'Vinycius Batista','vinycius@teste.com',28250005,'698dc19d489c4e4db73e28a713eab07b'),(6,'Matheus Tiberio','tiberio@teste.com',28250006,'698dc19d489c4e4db73e28a713eab07b'),(7,'Aluno 7','aluno7@teste.com',28250007,'698dc19d489c4e4db73e28a713eab07b'),(8,'Aluno 8','aluno8@teste.com',28250008,'698dc19d489c4e4db73e28a713eab07b'),(9,'Aluno 9','aluno9@teste.com',28250009,'698dc19d489c4e4db73e28a713eab07b'),(10,'Aluno 10','aluno10@teste.com',28250010,'698dc19d489c4e4db73e28a713eab07b');
 /*!40000 ALTER TABLE `alunos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `banca`
+--
+
+DROP TABLE IF EXISTS `banca`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `banca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `banca`
+--
+
+LOCK TABLES `banca` WRITE;
+/*!40000 ALTER TABLE `banca` DISABLE KEYS */;
+INSERT INTO `banca` VALUES (1,'Avaliador 1','avaliador1@teste.com','698dc19d489c4e4db73e28a713eab07b'),(2,'Avaliador 2 ','avaliador2@teste.com','698dc19d489c4e4db73e28a713eab07b'),(3,'Avaliador 3','avaliador3@teste.com','698dc19d489c4e4db73e28a713eab07b');
+/*!40000 ALTER TABLE `banca` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentarios`
+--
+
+DROP TABLE IF EXISTS `comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `id_orientador` int(11) NOT NULL,
+  `id_etapa` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `data_envio` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+LOCK TABLES `comentarios` WRITE;
+/*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+INSERT INTO `comentarios` VALUES (1,2,2,1,'Precisa arrumar alguns detalhes na parte que fala do objetivos','2018-12-10 16:15:38');
+/*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -82,7 +136,7 @@ CREATE TABLE `cronograma` (
   `evento` varchar(100) NOT NULL,
   `data` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +145,7 @@ CREATE TABLE `cronograma` (
 
 LOCK TABLES `cronograma` WRITE;
 /*!40000 ALTER TABLE `cronograma` DISABLE KEYS */;
-INSERT INTO `cronograma` VALUES (7,'IntroduÃ§Ã£o','2018-12-14'),(8,'Metodologia','2018-12-25'),(9,'Desenvolvimento','2018-12-17');
+INSERT INTO `cronograma` VALUES (1,'IntroduÃ§Ã£o','2018-12-10'),(2,'Metodologia','2018-12-21'),(3,'Resumo','2019-01-24'),(4,'Artigo Final','2019-01-31');
 /*!40000 ALTER TABLE `cronograma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +186,7 @@ CREATE TABLE `etapas` (
   `ultima_atualizacao` datetime NOT NULL,
   `url` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,6 +195,7 @@ CREATE TABLE `etapas` (
 
 LOCK TABLES `etapas` WRITE;
 /*!40000 ALTER TABLE `etapas` DISABLE KEYS */;
+INSERT INTO `etapas` VALUES (1,2,1,'2018-12-10 16:12:55','2018-12-10 16:12:55','db7859cf08c2d537d309cdc7bbcd055b.pdf'),(2,2,4,'2018-12-10 16:35:52','2018-12-10 16:35:52','d637b85e33951396d9e006427dc48e61.pdf');
 /*!40000 ALTER TABLE `etapas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +218,7 @@ CREATE TABLE `grupos` (
 
 LOCK TABLES `grupos` WRITE;
 /*!40000 ALTER TABLE `grupos` DISABLE KEYS */;
-INSERT INTO `grupos` VALUES (1,1),(1,2),(1,7),(2,3),(2,9),(2,8);
+INSERT INTO `grupos` VALUES (1,1),(1,2),(1,3),(2,4),(2,5),(2,6);
 /*!40000 ALTER TABLE `grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,12 +231,15 @@ DROP TABLE IF EXISTS `materiais`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `materiais` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(100) NOT NULL,
-  `descricao` varchar(100) NOT NULL,
-  `url` varchar(100) NOT NULL,
   `id_trabalho` int(11) NOT NULL,
+  `id_orientador` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `descricao` text NOT NULL,
+  `link` varchar(100) DEFAULT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `data_envio` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +248,138 @@ CREATE TABLE `materiais` (
 
 LOCK TABLES `materiais` WRITE;
 /*!40000 ALTER TABLE `materiais` DISABLE KEYS */;
+INSERT INTO `materiais` VALUES (1,2,2,'Artigo sobre o uso de computadores nas escolas','Leiam esse artigo, vai ajudar na pesquisa e desenvolvimento','http://www.google.com.br/',NULL,'2018-12-10 16:19:29');
 /*!40000 ALTER TABLE `materiais` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notas_banca`
+--
+
+DROP TABLE IF EXISTS `notas_banca`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notas_banca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `id_avaliador` int(11) NOT NULL,
+  `nota` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas_banca`
+--
+
+LOCK TABLES `notas_banca` WRITE;
+/*!40000 ALTER TABLE `notas_banca` DISABLE KEYS */;
+INSERT INTO `notas_banca` VALUES (1,2,1,2);
+/*!40000 ALTER TABLE `notas_banca` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notas_coordenador`
+--
+
+DROP TABLE IF EXISTS `notas_coordenador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notas_coordenador` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `nota` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas_coordenador`
+--
+
+LOCK TABLES `notas_coordenador` WRITE;
+/*!40000 ALTER TABLE `notas_coordenador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notas_coordenador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notas_orientador`
+--
+
+DROP TABLE IF EXISTS `notas_orientador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notas_orientador` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `nota` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas_orientador`
+--
+
+LOCK TABLES `notas_orientador` WRITE;
+/*!40000 ALTER TABLE `notas_orientador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notas_orientador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notificacoes`
+--
+
+DROP TABLE IF EXISTS `notificacoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificacoes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) DEFAULT NULL,
+  `id_orientador` int(11) DEFAULT NULL,
+  `texto` text NOT NULL,
+  `link` varchar(100) NOT NULL,
+  `lido` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificacoes`
+--
+
+LOCK TABLES `notificacoes` WRITE;
+/*!40000 ALTER TABLE `notificacoes` DISABLE KEYS */;
+INSERT INTO `notificacoes` VALUES (1,NULL,2,'ProgramaÃ§Ã£o no auxÃ­lio ao ensino infantil - Etapa: IntroduÃ§Ã£o enviada!','http://projeto.pc/orientador/trabalhos/etapas/2',1),(2,2,NULL,'Thiago Alexandre adicionou um novo comentÃ¡rio em: IntroduÃ§Ã£o','http://projeto.pc/aluno/etapas',1),(3,2,NULL,'Novo material: Artigo sobre o uso de computadores nas escolas','http://projeto.pc/aluno/materiais',1),(4,2,NULL,'Nova orientaÃ§Ã£o cadastrada por: Thiago Alexandre','http://projeto.pc/aluno/materiais',1),(5,NULL,2,'ProgramaÃ§Ã£o no auxÃ­lio ao ensino infantil - Etapa: Artigo Final enviada!','http://projeto.pc/orientador/trabalhos/etapas/2',1),(6,2,NULL,'Avaliado por Thiago Alexandre','http://projeto.pc/aluno/notas',1),(7,2,NULL,'Avaliado por Avaliador 1','http://projeto.pc/aluno/notas',0),(8,2,NULL,'Avaliado por Thiago Alexandre','http://projeto.pc/aluno/notas',0),(9,2,NULL,'Avaliado por Avaliador 1','http://projeto.pc/aluno/notas',0),(10,2,NULL,'Avaliado por Avaliador 1','http://projeto.pc/aluno/notas',0);
+/*!40000 ALTER TABLE `notificacoes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orientacoes`
+--
+
+DROP TABLE IF EXISTS `orientacoes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orientacoes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_trabalho` int(11) NOT NULL,
+  `id_orientador` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `descricao` text NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orientacoes`
+--
+
+LOCK TABLES `orientacoes` WRITE;
+/*!40000 ALTER TABLE `orientacoes` DISABLE KEYS */;
+INSERT INTO `orientacoes` VALUES (1,2,2,'Desenvolvimeto','AlteraÃ§Ãµes no desenvolvimento e correÃ§Ãµes nas normas ABNT','2018-12-10');
+/*!40000 ALTER TABLE `orientacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -206,7 +395,7 @@ CREATE TABLE `orientadores` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +404,7 @@ CREATE TABLE `orientadores` (
 
 LOCK TABLES `orientadores` WRITE;
 /*!40000 ALTER TABLE `orientadores` DISABLE KEYS */;
-INSERT INTO `orientadores` VALUES (1,'Orientador 1','orientador1@teste.com','698dc19d489c4e4db73e28a713eab07b'),(2,'Orientador 2','orientador2@teste.com','698dc19d489c4e4db73e28a713eab07b'),(3,'Orientador 3','orientador3@teste.com','698dc19d489c4e4db73e28a713eab07b');
+INSERT INTO `orientadores` VALUES (1,'Erwin Uhlmann','erwin@teste.com','698dc19d489c4e4db73e28a713eab07b'),(2,'Thiago Alexandre','thiago@teste.com','698dc19d489c4e4db73e28a713eab07b');
 /*!40000 ALTER TABLE `orientadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +428,7 @@ CREATE TABLE `temas` (
 
 LOCK TABLES `temas` WRITE;
 /*!40000 ALTER TABLE `temas` DISABLE KEYS */;
-INSERT INTO `temas` VALUES (1,'Tema 1'),(2,'Tema 2'),(3,'Tema 3');
+INSERT INTO `temas` VALUES (1,'InteligÃªncia artificial'),(2,'AutomaÃ§Ã£o industrial'),(3,'Pedagogia');
 /*!40000 ALTER TABLE `temas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +454,7 @@ CREATE TABLE `trabalhos` (
 
 LOCK TABLES `trabalhos` WRITE;
 /*!40000 ALTER TABLE `trabalhos` DISABLE KEYS */;
-INSERT INTO `trabalhos` VALUES (1,2,'InteligÃªncia artificial em azilos',3),(2,3,'Gerenciamento de projeto',1);
+INSERT INTO `trabalhos` VALUES (1,1,'Algoritmo autÃ´nomo inteligente',1),(2,3,'ProgramaÃ§Ã£o no auxÃ­lio ao ensino infantil',2);
 /*!40000 ALTER TABLE `trabalhos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -278,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-05 17:20:23
+-- Dump completed on 2018-12-10 18:06:55

@@ -4,7 +4,7 @@
 	
 	class Orientadores extends model {
 
-		function login($email, $senha){
+		function login($email, $senha){ //Checa os dados do usuáriono banco
 			
 			$sql = "SELECT id, nome FROM orientadores WHERE email = :email AND senha = :senha";
 			$sql = $this->db->prepare($sql);
@@ -21,7 +21,7 @@
 			}
 		}
 
-		function getTrabalhos($id_orientador){
+		function getTrabalhos($id_orientador){ //Retorna os trabalhos sob orientação
 			$trabalhos = array();
 
 			$sql = "SELECT trabalhos.id, temas.tema, trabalhos.titulo FROM trabalhos, temas WHERE trabalhos.id_tema = temas.id AND trabalhos.id_orientador = $id_orientador";
@@ -50,7 +50,7 @@
 			}
 		}
 
-		function getAutores($id_trabalho){
+		function getAutores($id_trabalho){ //Retorna os autores do trabalho
 			$autores = array();
 
 			$sql = "SELECT alunos.nome FROM alunos, grupos WHERE alunos.id = grupos.id_aluno AND id_trabalho = :id_trabalho";
@@ -64,7 +64,7 @@
 
 		}
 
-		function getTitulo($id_trabalho){
+		function getTitulo($id_trabalho){ //Retorna o título do trabalho
 
 			$sql = "SELECT titulo FROM trabalhos WHERE id = $id_trabalho";
 			$sql = $this->db->prepare($sql);
@@ -77,7 +77,7 @@
 			return $titulo;
 		}
 
-		function getEtapas($id_trabalho){
+		function getEtapas($id_trabalho){ //Retorna os eventos do cronograma e as etapas já relizadas da tabela etapas
 			$eventos = array();
 
 			$sql = "SELECT * FROM cronograma";
@@ -126,7 +126,7 @@
 			return $eventos;
 		}
 
-		function getComentarios($id_trabalho, $id_etapa){
+		function getComentarios($id_trabalho, $id_etapa){ //Retorna os comentários de cada etapa do trabalho
 			$comentarios = array();
 
 			$sql = "SELECT orientadores.nome, comentarios.comentario, comentarios.data_envio FROM orientadores, comentarios WHERE comentarios.id_trabalho = :id_trabalho AND comentarios.id_etapa = :id_etapa AND comentarios.id_orientador = orientadores.id ORDER BY comentarios.data_envio DESC";
@@ -153,7 +153,7 @@
 			}
 		}
 
-		function cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material){
+		function cadastrarMaterial($id_trabalho, $titulo, $descricao, $link, $material){ //Insere um novo material no banco
 			$url = null;
 
 			$id_orientador = $_SESSION['oLogin'];
@@ -177,10 +177,19 @@
 			$sql->bindValue(':url', $url);
 			$sql->execute();
 
+			//Dados da notificação
+
+			$dados = array();
+
+			$dados['id_trabalho'] = $id_trabalho;
+
+			$dados['titulo'] = $titulo;
+
+			$this->novaNotificacao(2, $dados); //Adicionando nova notificação (tipo 2)
 
 		}
 
-		function cadastrarOrientacao($id_trabalho, $titulo, $descricao){
+		function cadastrarOrientacao($id_trabalho, $titulo, $descricao){ //Insere uma nova orientação
 			
 			$id_orientador = $_SESSION['oLogin'];
 
@@ -192,9 +201,17 @@
 			$sql->bindValue(':descricao', $descricao);
 			$sql->execute();
 
+			//Dados da notificação
+
+			$dados = array();
+
+			$dados['id_trabalho'] = $id_trabalho;
+
+			$this->novaNotificacao(4, $dados);
+
 		}
 
-		function getMateriais(){
+		function getMateriais(){ //Retorna todos os materiais enviados
 			$materiais = array();
 
 			$id_orientador = $_SESSION['oLogin'];
@@ -220,7 +237,7 @@
 			}
 		}
 
-		function getOrientacoes(){
+		function getOrientacoes(){ //Retorna todas as orientações realizadas
 			$orientacoes = array();
 
 			$id_orientador = $_SESSION['oLogin'];
@@ -268,7 +285,19 @@
 
 		}
 
-		function checkAvaliacao($id_trabalho){
+		function getNomeEvento($id_evento){ //Retorna o nome do evento/etapa
+
+			$sql = "SELECT evento FROM cronograma WHERE id = :id_evento";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_evento', $id_evento);
+			$sql->execute();
+
+			$sql = $sql->fetch();
+
+			return $sql['evento'];
+		}
+
+		function checkAvaliacao($id_trabalho){ //Verifica se o trabalho já foi avaliado
 
 			$sql = "SELECT * FROM notas_orientador WHERE id_trabalho = $id_trabalho";
 			$sql = $this->db->query($sql);
@@ -281,7 +310,7 @@
 			}
 		}
 
-		function adicionarComentario($id_trabalho, $id_evento, $comentario){
+		function adicionarComentario($id_trabalho, $id_evento, $comentario){ //Adiciona um novo comentário na etapa do trabalho
 			$id_orientador = $_SESSION['oLogin'];
 
 			$sql = "INSERT INTO comentarios SET id_trabalho = :id_trabalho, id_orientador = :id_orientador, id_etapa = :id_etapa, comentario = :comentario, data_envio = NOW()";
@@ -294,12 +323,24 @@
 
 			$last_id = $this->db->lastInsertId();
 
+			//Dados da notificação
+
+			$dados = array();
+
+			$dados['id_trabalho'] = $id_trabalho;
+
+			$dados['nome_evento'] = $this->getNomeEvento($id_evento);
+
+			$this->novaNotificacao(1, $dados); //Adicionando nova notificação (tipo 1)
+
+			//Pegando o ultimo comentário inserido
+
 			$comentario = $this->getComentario($last_id);
 
 			return $comentario;
 		}
 
-		function getComentario($last_id){
+		function getComentario($last_id){ //Retorna o último comentário inserido
 
 			$sql = "SELECT orientadores.nome, comentarios.comentario, comentarios.data_envio FROM orientadores, comentarios WHERE comentarios.id_orientador = orientadores.id AND comentarios.id = :last_id";
 			$sql = $this->db->prepare($sql);
@@ -317,12 +358,85 @@
 
 		}
 
-		function avaliar($id_trabalho, $nota){
+		function avaliar($id_trabalho, $nota){ //Insere  a avaliação no banco e envia a notificação (tipo 0)
 
 			$sql = "INSERT INTO notas_orientador SET id_trabalho = :id_trabalho, nota = :nota";
 			$sql = $this->db->prepare($sql);
 			$sql->bindValue(':id_trabalho', $id_trabalho);
 			$sql->bindValue(':nota', $nota);
+			$sql->execute();
+
+			$dados = array();
+
+			$dados['id_trabalho'] = $id_trabalho;
+
+			$this->novaNotificacao(0, $dados);
+		}
+
+		function getNotificacoes(){ //Pega as notificações do banco 
+			$notificacoes = array(
+				'qtd' => 0,
+				'notificacoes' => array()
+			);
+
+			$id_orientador = $_SESSION['oLogin'];
+
+			$sql = "SELECT id, texto, link FROM notificacoes WHERE id_orientador = :id_orientador AND lido = 0";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_orientador', $id_orientador);
+			$sql->execute();
+
+			if ($sql->rowCount() > 0) {
+				$notificacoes['qtd'] = $sql->rowCount();
+				$sql = $sql->fetchAll();
+				$notificacoes['notificacoes'] = $sql;
+			}
+
+			return $notificacoes;
+		}
+
+		function lerNotificacao($id_notificacao){ //Atualiza a notificação no banco para lida (lido = 1)
+
+			$sql = "UPDATE notificacoes SET lido = 1 WHERE id = :id_notificacao";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_notificacao', $id_notificacao);
+			$sql->execute();
+
+		}
+
+		function novaNotificacao($tipo, $dados = array()){ //Adiciona uma nova notificação no banco
+
+			//tipo 0 - Avaliação
+			//tipo 1 - Comentário
+			//tipo 2 - Material
+
+			if ($tipo == 0) {
+
+				$texto = "Avaliado por ".$_SESSION['oNome'];
+				$link = "http://projeto.pc/aluno/notas";
+
+			} else if($tipo == 1){
+
+				$texto = $_SESSION['oNome']." adicionou um novo comentário em: ".$dados['nome_evento'];
+				$link = "http://projeto.pc/aluno/etapas";
+
+			} else if ($tipo == 2){
+
+				$texto = "Novo material: ".$dados['titulo'];
+				$link = "http://projeto.pc/aluno/materiais";
+
+			} else if($tipo == 4){
+
+				$texto = "Nova orientação cadastrada por: ".$_SESSION['oNome'];
+				$link = "http://projeto.pc/aluno/orientacoes";
+
+			}
+
+			$sql = "INSERT INTO notificacoes SET id_trabalho = :id_trabalho, texto = :texto, link = :link";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id_trabalho', $dados['id_trabalho']);
+			$sql->bindValue(':texto', $texto);
+			$sql->bindValue(':link', $link);
 			$sql->execute();
 		}
 

@@ -3,7 +3,8 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Projeto</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+	<title>Projeto - Orientador</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>assets/css/style.css">
 	<link href="<?php echo BASE_URL; ?>assets/css/simple-sidebar.css" rel="stylesheet">
@@ -48,7 +49,9 @@
 
 			<div class="navbar-nav ml-auto">
 
-					<a href="" class="btn btn-primary" style="margin-right: 20px;">Notificações</a>
+					<div class="dropdown">
+                        <a href="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="notificacoes_orientador" style="margin-right: 20px;"><span class="badge badge-danger" id="badge">0</span> Notificações</a>          
+                    </div>
 					
 					<a href="<?php echo BASE_URL; ?>logout" class="btn btn-primary">Sair</a>
 				
