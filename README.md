@@ -19,7 +19,7 @@ Os integrantes da banca avaliadora, depois de cadastrados pelo coordenador, pode
 ## Acesso ao login:
 
 <figure>
-	<img src="prints/acesso.png">
+	<img src="prints/acesso.PNG">
 	<figcaption>Figura 1 - Tela de acesso ao login</figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ Cada parte do sistema tem seu login, ao clicar no botão na tela de acesso ao lo
 Todos os formulários de login são tradados para que se os campos não estiverem preenchidos exiba um alerta "Preencha os campos" ou se o usuário e a senha não forem válidos, exibir o alerta "Usuário e/ou senha inválidos";
 
 <figure>
-	<img src="prints/login.png">
+	<img src="prints/login.PNG">
 	<figcaption>Figura 2 - Tela de Login</figcaption>
 </figure>
 
@@ -49,7 +49,7 @@ Ao clicar em salvar, o sistema verifica se já tem algum tema cadastrado, se nã
 Se já houverem temas cadastrados, verifica se foram adicionados novos temas e salva os dados no banco.
 
 <figure>
-	<img src="prints/coordenador-diretrizes.png">
+	<img src="prints/coordenador-diretrizes.PNG">
 	<figcaption>Figura 3 - Diretrizes</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@ Abaixo do formulário, há uma tabela com os orientadores já cadastrados e dois
 Ao clicar em salvar, se um dos campos ou os dois não estiver preenchido, é exibido um alerta com "Preencha os campos". Se estiverem preenchidos, os dados são cadastrados no banco e uma nova linha é adicionada à tabela.
 
 <figure>
-	<img src="prints/coordenador-orientadores.png">
+	<img src="prints/coordenador-orientadores.PNG">
 	<figcaption>Figura 4 - Orientadores</figcaption>
 </figure>
 
@@ -77,7 +77,7 @@ Cada orientação é um card, no header é exibido o título do trabalho, no cor
 Caso não hajam orientações é exibido o alerta "Orientador X ainda não realizou nenhuma orientação".
 
 <figure>
-	<img src="prints/coordenador-orientacoes.png">
+	<img src="prints/coordenador-orientacoes.PNG">
 	<figcaption>Figura 5 - Orientações</figcaption>
 </figure>
 
@@ -92,7 +92,7 @@ Se os campos não estiverem preenchidos é exibido o alerta correspondente com "
 Ao clicar em salvar, as etapas adicionadas são salvas no banco e é exibido o alerta "Cronograma salvo !!".
 
 <figure>
-	<img src="prints/coordenador-cronograma.png">
+	<img src="prints/coordenador-cronograma.PNG">
 	<figcaption>Figura 6 - Cronograma</figcaption>
 </figure>
 
@@ -107,7 +107,7 @@ O botão “Avaliar” só aparece quando o trabalho é finalizado, ou seja, qua
 Ao clicar em visualizar etapas, são exibidas todas as etapas do trabalho.
 
 <figure>
-	<img src="prints/coordenador-trabalhos.png">
+	<img src="prints/coordenador-trabalhos.PNG">
 	<figcaption>Figura 7 - Trabalhos</figcaption>
 </figure>
 
@@ -122,7 +122,7 @@ Caso a etapa ainda não tenha sido enviada, é exibido o card com a data previst
 Ao clicar em visualizar em uma etapa já enviada, é aberta uma nova guia com a visualização do documento.
 
 <figure>
-	<img src="prints/coordenador-etapas.png">
+	<img src="prints/coordenador-etapas.PNG">
 	<figcaption>Figura 8 - Etapas</figcaption>
 </figure>
 
@@ -137,7 +137,7 @@ Se a nota inserida estiver fora do range, o campo exibe um alerta.
 Se a nota foi inserida e está dentro do range, os dados são salvos no banco e o coordenador é direcionado de volta para a página trabalhos.
 
 <figure>
-	<img src="prints/coordenador-avaliar.png">
+	<img src="prints/coordenador-avaliar.PNG">
 	<figcaption>Figura 9 - Avaliação</figcaption>
 </figure>
 
@@ -146,7 +146,7 @@ Se a nota foi inserida e está dentro do range, os dados são salvos no banco e 
 Nesta tela o coordenador faz os cadastro dos integrantes da banca avaliadora, o funcionamento é o mesmo da´página de cadastro de orientadores.
 
 <figure>
-	<img src="prints/coordenador-banca.png">
+	<img src="prints/coordenador-banca.PNG">
 	<figcaption>Figura 10 - Banca</figcaption>
 </figure>
 
@@ -159,7 +159,7 @@ Nesta tela são exibidos os trabalhos sob orientação do orientador logado. Par
 O botão “Avaliar” só aparece quando o trabalho é finalizado, ou seja, quando a última etapa tiver sido enviada e o botão “Avaliado” aparece se o trabalho já tiver sido avaliado.
 
 <figure>
-	<img src="prints/orientador-trabalhos.png">
+	<img src="prints/orientador-trabalhos.PNG">
 	<figcaption>Figura 11 - Orientador - Trabalhos</figcaption>
 </figure>
 
@@ -178,7 +178,7 @@ Ao enviar, é feita uma requisição ajax, os dados são adicionados ao banco e 
 Cada comentário é um card, onde no header é exibido o nome do orientador, a data e a hora da postagem e no corpo o comentário em si.
 
 <figure>
-	<img src="prints/orientador-comentarios.png">
+	<img src="prints/orientador-comentarios.PNG">
 	<figcaption>Figura 12 - Orientador - Comentários</figcaption>
 </figure>
 
@@ -193,7 +193,7 @@ Se a nota inserida estiver fora do range, o campo exibe um alerta.
 Se a nota foi inserida e está dentro do range, os dados são salvos no banco e o orientador é direcionado de volta para a página trabalhos.
 
 <figure>
-	<img src="prints/orientador-avaliacao.png">
+	<img src="prints/orientador-avaliacao.PNG">
 	<figcaption>Figura 13 - Orientador - Avaliação</figcaption>
 </figure>
 
@@ -204,7 +204,7 @@ Nesta tela são exibidas todas as orientações realizadas pelo orientador em to
 Cada orientação é um card, no header é exibido o título do trabalho, no corpo são exibidos o título da orientação e a descrição das atividades realizadas e no footer a data da realização.
 
 <figure>
-	<img src="prints/orientador-orientacoes.png">
+	<img src="prints/orientador-orientacoes.PNG">
 	<figcaption>Figura 14 - Orientador - Orientações</figcaption>
 </figure>
 
@@ -217,7 +217,7 @@ Caso os campos título e descrição não sejam preenchidos, é exibido um alert
 Caso esteja tudo preenchido, os dados são salvos no banco e o orientador é redirecionado para a página orientações.
 
 <figure>
-	<img src="prints/orientador-nova-orientacao.png">
+	<img src="prints/orientador-nova-orientacao.PNG">
 	<figcaption>Figura 15 - Orientador - Avaliação</figcaption>
 </figure>
 
@@ -230,7 +230,7 @@ Cada material é um card, no header é exibido o título do trabalho para o qual
 Se houver um arquivo, é exibido o botão “Ver arquivo” que ao clicar, abre uma nova guia com a visualização do documento.
 
 <figure>
-	<img src="prints/orientador-materiais.png">
+	<img src="prints/orientador-materiais.PNG">
 	<figcaption>Figura 16 - Orientador - Materiais</figcaption>
 </figure>
 
@@ -245,7 +245,7 @@ Se título e descrição estiverem preenchidos, o sistema verifica se foi enviad
 Se um arquivo foi enviado, mas não é do tipo PDF, exibe um alerta com “Somente arquivos PDF”. Se for um arquivo PDF, os dados são salvos no banco, o arquivo é adicionado ao servidor e o orientador é redirecionado para a página materiais.
 
 <figure>
-	<img src="prints/orientador-enviar-material.png">
+	<img src="prints/orientador-enviar-material.PNG">
 	<figcaption>Figura 17 - Orientador - Enviar material</figcaption>
 </figure>
 
@@ -261,7 +261,7 @@ Sempre que a página é carregada ou atualizada, as notificações são puxadas 
 Ao clicar em uma notificação, o aluno é direcionado para a página correspondente e outra requisição ajax é feita atualizando a notificação para lida no banco de dados.
 
 <figure>
-	<img src="prints/orientador-notificacoes.png">
+	<img src="prints/orientador-notificacoes.PNG">
 	<figcaption>Figura 18 - Orientador - Notificações</figcaption>
 </figure>
 
@@ -284,7 +284,7 @@ Ao clicar em “excluir” em um dos registros adicionados na tabela, a linha é
 Ao clicar em salvar, o formulário é enviado, caso o título não esteja preenchido, é exibido um alerta com “Insira um título”, se estiver tudo preenchido, salva os dados no banco;
 
 <figure>
-	<img src="prints/aluno-cadastrar-trabalho.png">
+	<img src="prints/aluno-cadastrar-trabalho.PNG">
 	<figcaption>Figura 19 - Aluno - Cadastrar Trabalho</figcaption>
 </figure>
 
@@ -295,7 +295,7 @@ A tela etapas puxa do banco de dados todas as etapas cadastradas pelo coordenado
 Se a etapa não foi enviada, aparece o botão enviar, se já foi enviada, aparecem os botões “Visualizar”, “Atualizar” e “Comentários”.
 
 <figure>
-	<img src="prints/aluno-etapas.png">
+	<img src="prints/aluno-etapas.PNG">
 	<figcaption>Figura 20 - Aluno - Etapas</figcaption>
 </figure>
 
@@ -306,7 +306,7 @@ Ao clicar em enviar, o formulário é enviado e o sistema verifica se foi seleci
 Se um arquivo foi enviado, mas não é do tipo PDF, exibe um alerta com “Somente arquivos PDF”. Se for um arquivo PDF, os dados são salvos no banco, o arquivo é adicionado ao servidor e o aluno é redirecionado para a página etapas.
 
 <figure>
-	<img src="prints/aluno-enviar-etapa.png">
+	<img src="prints/aluno-enviar-etapa.PNG">
 	<figcaption>Figura 21 - Aluno - Enviar Etapa</figcaption>
 </figure>
 
@@ -317,7 +317,7 @@ Ao clicar em atualizar é exibido o formulário de atualização, semelhante ao 
 Ao clicar em comentários, são exibidos os comentários feitos pelo orientador na respectiva etapa, mostrando o nome do orientador, a data e a hora do envio do comentário.
 
 <figure>
-	<img src="prints/aluno-comentarios.png">
+	<img src="prints/aluno-comentarios.PNG">
 	<figcaption>Figura 22 - Aluno - Comentários</figcaption>
 </figure>
 
@@ -326,7 +326,7 @@ Ao clicar em comentários, são exibidos os comentários feitos pelo orientador 
 Na tela de orientações, são exibidas as orientações recebidas, o título, a descrição do que foi feito e a data da realização.
 
 <figure>
-	<img src="prints/aluno-orientacoes.png">
+	<img src="prints/aluno-orientacoes.PNG">
 	<figcaption>Figura 23 - Aluno - Orientações</figcaption>
 </figure>
 
@@ -337,7 +337,7 @@ Na tela de materiais são exibidos todos os materiais enviados pelo orientador, 
 Se houver um arquivo, ao clicar no botão, é aberta uma nova guia com a visualização do documento.
 
 <figure>
-	<img src="prints/aluno-materiais.png">
+	<img src="prints/aluno-materiais.PNG">
 	<figcaption>Figura 24 - Aluno - Materiais</figcaption>
 </figure>
 
@@ -348,12 +348,12 @@ Na tela notas, são exibidos quatro cards com as notas do coordenador, do orient
 Caso ainda não tenha sido avaliado, é exibido o alerta “Ainda não avaliado” no respectivo card.
 
 <figure>
-	<img src="prints/aluno-notas-1.png">
+	<img src="prints/aluno-notas-1.PNG">
 	<figcaption>Figura 25 - Aluno - Notas(1)</figcaption>
 </figure>
 
 <figure>
-	<img src="prints/aluno-notas-2.png">
+	<img src="prints/aluno-notas-2.PNG">
 	<figcaption>Figura 26 - Aluno - Notas(2)</figcaption>
 </figure>
 
@@ -371,7 +371,7 @@ Sempre que a página é carregada ou atualizada, as notificações são puxadas 
 Ao clicar em uma notificação, o aluno é direcionado para a página correspondente e outra requisição ajax é feita atualizando a notificação para lida no banco de dados.
 
 <figure>
-	<img src="prints/aluno-notificacoes.png">
+	<img src="prints/aluno-notificacoes.PNG">
 	<figcaption>Figura 27 - Aluno - Notificações</figcaption>
 </figure>
 
@@ -392,12 +392,12 @@ Se o trabalho já foi avaliado são exibidos os botões “Visualizar” e o bot
 Ao clicar em visualizar, é aberta uma nova guia com a visualização do documento correspondente  à etapa final.
 
 <figure>
-	<img src="prints/banca-trabalhos-1.png">
+	<img src="prints/banca-trabalhos-1.PNG">
 	<figcaption>Figura 28 - Banca - Trabalhos(1)</figcaption>
 </figure>
 
 <figure>
-	<img src="prints/banca-trabalhos-2.png">
+	<img src="prints/banca-trabalhos-2.PNG">
 	<figcaption>Figura 29 - Banca - Trabalhos(2)</figcaption>
 </figure>
 
@@ -412,7 +412,7 @@ Se a nota inserida estiver fora do range, o campo exibe um alerta.
 Se a nota foi inserida e está dentro do range, os dados são salvos no banco.
 
 <figure>
-	<img src="prints/banca-avaliar.png">
+	<img src="prints/banca-avaliar.PNG">
 	<figcaption>Figura 30 - Banca - Avaliar</figcaption>
 </figure>
 
