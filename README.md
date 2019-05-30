@@ -165,7 +165,7 @@ Se a nota foi inserida e está dentro do range, os dados são salvos no banco e 
 
 ## -Banca
 
-Nesta tela o coordenador faz os cadastro dos integrantes da banca avaliadora, o funcionamento é o mesmo da página de cadastro de orientadores.
+Nesta tela o coordenador faz o cadastro dos integrantes da banca avaliadora, o funcionamento é o mesmo da página de cadastro de orientadores.
 
 <hr>
 
