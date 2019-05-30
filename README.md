@@ -312,7 +312,7 @@ O orientador recebe notificações quando:
 
 Sempre que a página é carregada ou atualizada, as notificações são puxadas do banco e exibidas através de uma requisição ajax.
 
-Ao clicar em uma notificação, o aluno é direcionado para a página correspondente e outra requisição ajax é feita atualizando a notificação para lida no banco de dados.
+Ao clicar em uma notificação, o orientador é direcionado para a página correspondente e outra requisição ajax é feita atualizando a notificação para lida no banco de dados.
 
 <hr>
 
